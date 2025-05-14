@@ -1,0 +1,379 @@
+2025-04-16 19:32:50,377 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:32:50,377 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:32:50,378 - INFO -  * Restarting with stat
+2025-04-16 19:32:51,125 - WARNING -  * Debugger is active!
+2025-04-16 19:32:51,130 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:33:40,655 - INFO - 127.0.0.1 - - [16/Apr/2025 19:33:40] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:33:40,734 - INFO - 127.0.0.1 - - [16/Apr/2025 19:33:40] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-16 19:33:40,897 - INFO - 127.0.0.1 - - [16/Apr/2025 19:33:40] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-16 19:33:41,269 - INFO - 127.0.0.1 - - [16/Apr/2025 19:33:41] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=34K5JMZ7DLI86hz9972x HTTP/1.1" 200 -
+2025-04-16 19:33:41,518 - INFO - 127.0.0.1 - - [16/Apr/2025 19:33:41] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-16 19:34:38,939 - INFO -  * Detected change in 'C:\\Users\\igor de jesus\\zaptest\\dashboard.py', reloading
+2025-04-16 19:34:39,027 - INFO -  * Restarting with stat
+2025-04-16 19:34:39,766 - WARNING -  * Debugger is active!
+2025-04-16 19:34:39,770 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:34:52,710 - INFO -  * Detected change in 'C:\\Users\\igor de jesus\\zaptest\\dashboard.py', reloading
+2025-04-16 19:34:52,789 - INFO -  * Restarting with stat
+2025-04-16 19:34:53,533 - WARNING -  * Debugger is active!
+2025-04-16 19:34:53,538 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:35:10,260 - INFO - 127.0.0.1 - - [16/Apr/2025 19:35:10] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:35:10,342 - INFO - 127.0.0.1 - - [16/Apr/2025 19:35:10] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-16 19:35:10,511 - INFO - 127.0.0.1 - - [16/Apr/2025 19:35:10] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-16 19:35:10,854 - INFO - 127.0.0.1 - - [16/Apr/2025 19:35:10] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=LLHwJbbbjZa5eXT0RiUL HTTP/1.1" 200 -
+2025-04-16 19:35:11,106 - INFO - 127.0.0.1 - - [16/Apr/2025 19:35:11] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-16 19:36:45,775 - INFO -  * Detected change in 'C:\\Users\\igor de jesus\\zaptest\\dashboard.py', reloading
+2025-04-16 19:36:45,857 - INFO -  * Restarting with stat
+2025-04-16 19:36:46,607 - WARNING -  * Debugger is active!
+2025-04-16 19:36:46,611 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:38:17,065 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:38:17,065 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:38:17,066 - INFO -  * Restarting with stat
+2025-04-16 19:38:17,801 - WARNING -  * Debugger is active!
+2025-04-16 19:38:17,806 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:38:30,320 - INFO - 127.0.0.1 - - [16/Apr/2025 19:38:30] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:38:30,413 - INFO - 127.0.0.1 - - [16/Apr/2025 19:38:30] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-16 19:38:30,552 - INFO - 127.0.0.1 - - [16/Apr/2025 19:38:30] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-16 19:38:30,890 - INFO - 127.0.0.1 - - [16/Apr/2025 19:38:30] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=LgtXGKU1lDsxd8LgMTEU HTTP/1.1" 200 -
+2025-04-16 19:38:31,162 - INFO - 127.0.0.1 - - [16/Apr/2025 19:38:31] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-16 19:41:04,320 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:41:04,320 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:41:12,889 - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 86, in home
+    return render_template('dashboard.html', stats=stats)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\igor de jesus\zaptest\templates\dashboard.html", line 57, in top-level template code
+    <h2 class="mb-0">R$ {{ "{:,.2f}".format(stats.financial.total_value) }}</h2>
+    ^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'financial'
+2025-04-16 19:41:12,893 - INFO - 127.0.0.1 - - [16/Apr/2025 19:41:12] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:41:13,100 - INFO - 127.0.0.1 - - [16/Apr/2025 19:41:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-16 19:41:31,654 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:41:31,654 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:41:31,656 - INFO -  * Restarting with stat
+2025-04-16 19:41:32,381 - WARNING -  * Debugger is active!
+2025-04-16 19:41:32,385 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:41:36,448 - INFO - 127.0.0.1 - - [16/Apr/2025 19:41:36] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:41:36,534 - INFO - 127.0.0.1 - - [16/Apr/2025 19:41:36] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-16 19:41:36,672 - INFO - 127.0.0.1 - - [16/Apr/2025 19:41:36] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-16 19:41:37,048 - INFO - 127.0.0.1 - - [16/Apr/2025 19:41:37] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=ab2yvzcaXQS4vZet02JB HTTP/1.1" 200 -
+2025-04-16 19:41:37,314 - INFO - 127.0.0.1 - - [16/Apr/2025 19:41:37] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-16 19:42:48,940 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:42:48,940 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:42:48,943 - INFO -  * Restarting with stat
+2025-04-16 19:42:49,695 - WARNING -  * Debugger is active!
+2025-04-16 19:42:49,699 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:42:54,502 - INFO - 127.0.0.1 - - [16/Apr/2025 19:42:54] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:42:54,598 - INFO - 127.0.0.1 - - [16/Apr/2025 19:42:54] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-16 19:42:54,722 - INFO - 127.0.0.1 - - [16/Apr/2025 19:42:54] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-16 19:42:55,069 - INFO - 127.0.0.1 - - [16/Apr/2025 19:42:55] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=eneHVCkkKvHBmg4d2yBb HTTP/1.1" 200 -
+2025-04-16 19:42:55,319 - INFO - 127.0.0.1 - - [16/Apr/2025 19:42:55] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-16 19:44:44,478 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:44:44,478 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:44:57,803 - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'VALOR'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 114, in home
+    stats = dashboard.analyze_contracts()
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 74, in analyze_contracts
+    df['VALOR'].astype(str)
+    ~~^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'VALOR'
+2025-04-16 19:44:57,811 - INFO - 127.0.0.1 - - [16/Apr/2025 19:44:57] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:47:14,106 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:47:14,106 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:47:14,107 - INFO -  * Restarting with stat
+2025-04-16 19:47:14,861 - WARNING -  * Debugger is active!
+2025-04-16 19:47:14,866 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:47:19,627 - ERROR - Missing columns in CSV: ['VALOR']
+2025-04-16 19:47:19,644 - ERROR - Error in home route: 'dict object' has no attribute 'escritorios'
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 135, in home
+    return render_template('dashboard.html', stats=stats)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\igor de jesus\zaptest\templates\dashboard.html", line 65, in top-level template code
+    <h2 class="mb-0">{{ stats.escritorios.total }}</h2>
+    ^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'escritorios'
+
+2025-04-16 19:47:19,646 - INFO - 127.0.0.1 - - [16/Apr/2025 19:47:19] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:47:19,662 - INFO - 127.0.0.1 - - [16/Apr/2025 19:47:19] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-04-16 19:47:26,693 - ERROR - Missing columns in CSV: ['VALOR']
+2025-04-16 19:47:26,695 - ERROR - Error in home route: 'dict object' has no attribute 'escritorios'
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 135, in home
+    return render_template('dashboard.html', stats=stats)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\igor de jesus\zaptest\templates\dashboard.html", line 65, in top-level template code
+    <h2 class="mb-0">{{ stats.escritorios.total }}</h2>
+    ^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'escritorios'
+
+2025-04-16 19:47:26,696 - INFO - 127.0.0.1 - - [16/Apr/2025 19:47:26] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:47:26,995 - INFO - 127.0.0.1 - - [16/Apr/2025 19:47:26] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-04-16 19:49:11,534 - ERROR - Missing columns in CSV: ['VALOR']
+2025-04-16 19:49:11,538 - ERROR - Error in home route: 'dict object' has no attribute 'escritorios'
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 135, in home
+    return render_template('dashboard.html', stats=stats)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\igor de jesus\zaptest\templates\dashboard.html", line 65, in top-level template code
+    <h2 class="mb-0">{{ stats.escritorios.total }}</h2>
+    ^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'escritorios'
+
+2025-04-16 19:49:11,538 - INFO - 127.0.0.1 - - [16/Apr/2025 19:49:11] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:49:11,557 - INFO - 127.0.0.1 - - [16/Apr/2025 19:49:11] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-04-16 19:49:26,963 - INFO -  * Detected change in 'C:\\Users\\igor de jesus\\zaptest\\dashboard.py', reloading
+2025-04-16 19:49:27,052 - INFO -  * Restarting with stat
+2025-04-16 19:49:27,775 - WARNING -  * Debugger is active!
+2025-04-16 19:49:27,779 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:50:07,267 - INFO -  * Detected change in 'C:\\Users\\igor de jesus\\zaptest\\dashboard.py', reloading
+2025-04-16 19:50:07,351 - INFO -  * Restarting with stat
+2025-04-16 19:50:08,082 - WARNING -  * Debugger is active!
+2025-04-16 19:50:08,086 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:50:56,546 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-16 19:50:56,546 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-16 19:50:56,547 - INFO -  * Restarting with stat
+2025-04-16 19:50:57,263 - WARNING -  * Debugger is active!
+2025-04-16 19:50:57,267 - INFO -  * Debugger PIN: 623-081-147
+2025-04-16 19:50:59,738 - ERROR - Missing columns in CSV: ['VALOR']
+2025-04-16 19:50:59,758 - ERROR - Error in home route: 'tables' is undefined
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 165, in home
+    return render_template('dashboard.html', stats=stats)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\igor de jesus\zaptest\templates\dashboard.html", line 130, in top-level template code
+    {% for category, table in tables.items() %}
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tables' is undefined
+
+2025-04-16 19:50:59,760 - INFO - 127.0.0.1 - - [16/Apr/2025 19:50:59] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:50:59,776 - INFO - 127.0.0.1 - - [16/Apr/2025 19:50:59] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-04-16 19:51:01,455 - ERROR - Missing columns in CSV: ['VALOR']
+2025-04-16 19:51:01,457 - ERROR - Error in home route: 'tables' is undefined
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 165, in home
+    return render_template('dashboard.html', stats=stats)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\igor de jesus\zaptest\templates\dashboard.html", line 130, in top-level template code
+    {% for category, table in tables.items() %}
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tables' is undefined
+
+2025-04-16 19:51:01,457 - INFO - 127.0.0.1 - - [16/Apr/2025 19:51:01] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:51:01,764 - INFO - 127.0.0.1 - - [16/Apr/2025 19:51:01] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-04-16 19:51:03,239 - ERROR - Missing columns in CSV: ['VALOR']
+2025-04-16 19:51:03,241 - ERROR - Error in home route: 'tables' is undefined
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\dashboard.py", line 165, in home
+    return render_template('dashboard.html', stats=stats)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\igor de jesus\zaptest\templates\dashboard.html", line 130, in top-level template code
+    {% for category, table in tables.items() %}
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tables' is undefined
+
+2025-04-16 19:51:03,242 - INFO - 127.0.0.1 - - [16/Apr/2025 19:51:03] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-16 19:51:03,303 - INFO - 127.0.0.1 - - [16/Apr/2025 19:51:03] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-04-17 12:00:47,869 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-17 12:00:47,870 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 12:00:55,982 - INFO - 127.0.0.1 - - [17/Apr/2025 12:00:55] "GET /login HTTP/1.1" 200 -
+2025-04-17 12:00:56,272 - INFO - 127.0.0.1 - - [17/Apr/2025 12:00:56] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 12:01:03,564 - INFO - 127.0.0.1 - - [17/Apr/2025 12:01:03] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2025-04-17 12:23:09,455 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-17 12:23:09,455 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 12:23:15,094 - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask_login\utils.py", line 285, in decorated_view
+    return current_app.login_manager.unauthorized()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask_login\login_manager.py", line 187, in unauthorized
+    flash(self.login_message, category=self.login_message_category)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\helpers.py", line 335, in flash
+    session["_flashes"] = flashes
+    ~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-04-17 12:23:15,099 - INFO - 127.0.0.1 - - [17/Apr/2025 12:23:15] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-17 12:23:15,300 - INFO - 127.0.0.1 - - [17/Apr/2025 12:23:15] "[36mGET /favicon.ico HTTP/1.1[0m" 304 -
+2025-04-17 12:24:22,017 - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask_login\utils.py", line 285, in decorated_view
+    return current_app.login_manager.unauthorized()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask_login\login_manager.py", line 187, in unauthorized
+    flash(self.login_message, category=self.login_message_category)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\helpers.py", line 335, in flash
+    session["_flashes"] = flashes
+    ~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\igor de jesus\zaptest\venv\Lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-04-17 12:24:22,023 - INFO - 127.0.0.1 - - [17/Apr/2025 12:24:22] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-17 12:30:38,136 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.16.9:5000
+2025-04-17 12:30:38,136 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 12:30:38,138 - INFO -  * Restarting with stat
+2025-04-17 12:30:38,879 - WARNING -  * Debugger is active!
+2025-04-17 12:30:38,883 - INFO -  * Debugger PIN: 623-081-147
+2025-04-17 12:30:43,503 - INFO - 127.0.0.1 - - [17/Apr/2025 12:30:43] "[32mGET / HTTP/1.1[0m" 302 -
+2025-04-17 12:30:43,512 - INFO - 127.0.0.1 - - [17/Apr/2025 12:30:43] "GET /login?next=/ HTTP/1.1" 200 -
+2025-04-17 12:30:43,833 - INFO - 127.0.0.1 - - [17/Apr/2025 12:30:43] "GET /static/js/login.js HTTP/1.1" 200 -
+2025-04-17 12:30:44,206 - INFO - 127.0.0.1 - - [17/Apr/2025 12:30:44] "[36mGET /favicon.ico HTTP/1.1[0m" 304 -
+2025-04-17 12:30:49,910 - INFO - 127.0.0.1 - - [17/Apr/2025 12:30:49] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2025-04-17 12:31:13,684 - INFO - 127.0.0.1 - - [17/Apr/2025 12:31:13] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2025-04-17 13:15:06,397 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.16.9:5000
+2025-04-17 13:15:06,397 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 13:15:06,399 - INFO -  * Restarting with stat
+2025-04-17 13:15:07,249 - WARNING -  * Debugger is active!
+2025-04-17 13:15:07,253 - INFO -  * Debugger PIN: 623-081-147
+2025-04-17 13:15:17,155 - INFO - 127.0.0.1 - - [17/Apr/2025 13:15:17] "[32mGET / HTTP/1.1[0m" 302 -
+2025-04-17 13:15:17,418 - INFO - 127.0.0.1 - - [17/Apr/2025 13:15:17] "GET /login?next=/ HTTP/1.1" 200 -
+2025-04-17 13:15:31,554 - INFO - 127.0.0.1 - - [17/Apr/2025 13:15:31] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2025-04-17 13:15:38,149 - INFO - 127.0.0.1 - - [17/Apr/2025 13:15:38] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2025-04-17 13:16:03,145 - INFO - 127.0.0.1 - - [17/Apr/2025 13:16:03] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2025-04-17 13:16:05,546 - INFO - 127.0.0.1 - - [17/Apr/2025 13:16:05] "[31m[1mPOST /login HTTP/1.1[0m" 401 -

@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUITAÇÕES MENSAL - MAIO</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px 0;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(231, 76, 60, 0.5));
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 2.2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header h3 {
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        .month-display {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        .month-display::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 10px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+        
+        .candidate-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
+            position: relative;
+        }
+        
+        .candidate-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .candidate-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        .candidate-photo {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .candidate-card:hover .candidate-photo {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+        
+        .candidate-info {
+            padding: 20px;
+        }
+        
+        .candidate-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .candidate-name::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+        
+        .position-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .position-badge {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .position-badge i {
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .quited-badge {
+            background-color: var(--success-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quited-badge i {
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .vote-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vote-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+        
+        .vote-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(231, 76, 60, 0.4);
+        }
+        
+        .vote-btn:hover::after {
+            left: 120%;
+        }
+        
+        .vote-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px 0;
+            border-radius: 15px 15px 0 0;
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(231, 76, 60, 0.5));
+        }
+        
+        .footer h5 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer p {
+            font-style: italic;
+            opacity: 0.9;
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .editor-panel {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 35px;
+            border-top: 4px solid var(--secondary-color);
+        }
+        
+        .editor-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .editor-title i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .form-label i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+        
+        .preview-area {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 25px;
+            border: 1px dashed var(--secondary-color);
+        }
+        
+        .toggle-editor {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .toggle-editor:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+        }
+        
+        .toggle-editor i {
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+        
+        .editor-container {
+            display: none;
+        }
+        
+        .show-editor {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .rank-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: -20px;
+            right: 15px;
+            z-index: 2;
+            border: 2px solid white;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #f5f7fa, #e4e8eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-placeholder i {
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        
+        .candidate-card:hover .photo-placeholder i {
+            opacity: 0.5;
+            transform: scale(1.1);
+        }
+        
+        .progress-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .no-photo-icon {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .modal-content {
+            border-radius: 12px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-bottom: none;
+            padding: 15px 20px;
+        }
+        
+        .modal-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .modal-title i {
+            margin-right: 10px;
+        }
+        
+        .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+        
+        .drag-drop-area {
+            border: 2px dashed var(--secondary-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .drag-drop-area:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .drag-drop-area i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .drag-drop-text {
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .drag-drop-hint {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .tooltip-inner {
+            background-color: var(--primary-color);
+            padding: 8px 12px;
+            font-size: 0.85rem;
+        }
+        
+        .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before, 
+        .bs-tooltip-top .tooltip-arrow::before {
+            border-top-color: var(--primary-color);
+        }
+        
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        
+        .floating-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floating-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+        
+        .floating-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .floating-btn:hover::after {
+            left: 120%;
+        }
+        
+        .floating-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .badge-canvas {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <canvas id="headerCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
+        <div style="position: relative; z-index: 1;">
+            <h1>QUITAÇÕES MENSAL</h1>
+            <h3>MAIO</h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <button id="toggleEditor" class="toggle-editor">
+            <i class="fas fa-sliders-h me-2"></i>Editor de Enquete
+        </button>
+
+        <div id="editorContainer" class="editor-container">
+            <div class="editor-panel">
+                <h4 class="editor-title"><i class="fas fa-cog"></i>Configurações da Enquete</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="pollTitle" class="form-label"><i class="fas fa-heading"></i>Título da Enquete</label>
+                            <input type="text" class="form-control" id="pollTitle" value="QUITAÇÕES MENSAL">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pollMonth" class="form-label"><i class="fas fa-calendar-alt"></i>Mês</label>
+                            <input type="text" class="form-control" id="pollMonth" value="MAIO">
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label"><i class="fas fa-building"></i>Nome da Empresa</label>
+                            <input type="text" class="form-control" id="companyName" value="SE TE CAPITAL ASSESSORIA">
+                        </div>
+                        <div class="mb-3">
+                            <label for="companySlogan" class="form-label"><i class="fas fa-quote-left"></i>Slogan</label>
+                            <input type="text" class="form-control" id="companySlogan" value="Não é o que fazemos que nos define. É como fazemos.">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="primaryColor" class="form-label"><i class="fas fa-palette"></i>Cor Primária</label>
+                            <input type="color" class="form-control form-control-color" id="primaryColor" value="#2c3e50">
+                        </div>
+                        <div class="mb-3">
+                            <label for="secondaryColor" class="form-label"><i class="fas fa-palette"></i>Cor Secundária</label>
+                            <input type="color" class="form-control form-control-color" id="secondaryColor" value="#3498db">
+                        </div>
+                        <div class="mb-3">
+                            <label for="accentColor" class="form-label"><i class="fas fa-palette"></i>Cor de Destaque</label>
+                            <input type="color" class="form-control form-control-color" id="accentColor" value="#e74c3c">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fas fa-magic"></i>Efeitos Visuais</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="enableParticles" checked>
+                                <label class="form-check-label" for="enableParticles">Partículas no cabeçalho</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="enableAnimations" checked>
+                                <label class="form-check-label" for="enableAnimations">Animações</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="editor-title mt-4"><i class="fas fa-users"></i>Candidatos</h4>
+                <div id="candidatesContainer">
+                    <!-- Candidatos serão adicionados dinamicamente aqui -->
+                </div>
+                <button id="addCandidate" class="btn btn-secondary mt-3">
+                    <i class="fas fa-user-plus me-2"></i>Adicionar Candidato
+                </button>
+
+                <div class="preview-area mt-4">
+                    <h4 class="editor-title"><i class="fas fa-eye"></i>Pré-visualização</h4>
+                    <div id="livePreview">
+                        <!-- Preview será atualizado aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-display text-center">
+            <h4>Mês: <span id="displayMonth">MAIO</span></h4>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <span class="badge bg-primary"><i class="fas fa-trophy me-1"></i>1º</span>
+                <span class="badge bg-secondary"><i class="fas fa-medal me-1"></i>2º</span>
+                <span class="badge bg-warning text-dark"><i class="fas fa-award me-1"></i>3º</span>
+                <span class="badge bg-light text-dark"><i class="fas fa-star me-1"></i>4</span>
+            </div>
+        </div>
+
+        <div class="row" id="candidatesList">
+            <!-- Candidatos serão renderizados aqui -->
+        </div>
+
+        <div class="footer text-center">
+            <canvas id="footerCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
+            <div style="position: relative; z-index: 1;">
+                <h5 id="displayCompanyName">SE TE CAPITAL ASSESSORIA</h5>
+                <p id="displayCompanySlogan">Não é o que fazemos que nos define. É como fazemos.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para upload de foto -->
+    <div class="modal fade" id="photoUploadModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-camera me-2"></i>Upload de Foto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="drag-drop-area" id="dragDropArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <div class="drag-drop-text">Arraste e solte sua foto aqui</div>
+                        <div class="drag-drop-hint">ou clique para selecionar um arquivo</div>
+                        <input type="file" id="candidatePhotoInput" accept="image/*" class="d-none">
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label"><i class="fas fa-crop-alt"></i>Recortar Foto</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="cropOption" id="cropSquare" value="square" checked>
+                                    <label class="form-check-label" for="cropSquare">Quadrado (1:1)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="cropOption" id="cropPortrait" value="portrait">
+                                    <label class="form-check-label" for="cropPortrait">Retrato (3:4)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label"><i class="fas fa-adjust"></i>Ajustes</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="enhancePhoto" checked>
+                                    <label class="form-check-label" for="enhancePhoto">Melhorar qualidade</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <canvas id="photoCanvas" style="max-width: 100%; border: 1px solid #ddd; display: none;"></canvas>
+                        <div class="mt-3">
+                            <button type="button" id="rotateLeftBtn" class="btn btn-outline-secondary btn-sm me-2" title="Girar para esquerda">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                            <button type="button" id="rotateRightBtn" class="btn btn-outline-secondary btn-sm me-2" title="Girar para direita">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                            <button type="button" id="resetPhotoBtn" class="btn btn-outline-secondary btn-sm" title="Redefinir">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancelar
+                    </button>
+                    <button type="button" id="confirmPhotoUpload" class="btn btn-primary">
+                        <i class="fas fa-check me-2"></i>Confirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating buttons -->
+    <div class="floating-buttons">
+        <button class="floating-btn" id="scrollToTopBtn" title="Voltar ao topo">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="floating-btn" id="shareBtn" title="Compartilhar">
+            <i class="fas fa-share-alt"></i>
+        </button>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dados iniciais baseados na imagem
+        const initialCandidates = [
+            { id: 1, name: "NUNO SOUSA", position: "QUITADOS", photo: "", votes: 125 },
+            { id: 2, name: "FELIPE TORRES", position: "QUITADOS", photo: "", votes: 98 },
+            { id: 3, name: "BRUNA CRISTINA", position: "QUITADOS", photo: "", votes: 87 },
+            { id: 4, name: "EDIANE FEITOZA", position: "4", photo: "", votes: 65 },
+            { id: 5, name: "MONYZA BENIGNO", position: "4", photo: "", votes: 54 },
+            { id: 6, name: "GREICY GONÇALVES", position: "4", photo: "", votes: 43 },
+            { id: 7, name: "AMANDA SANTANA", position: "3", photo: "", votes: 32 }
+        ];
+
+        let candidates = [...initialCandidates];
+        let currentEditingCandidateId = null;
+        let currentPhotoBase64 = null;
+        let particles = [];
+        let headerCanvas, footerCanvas, headerCtx, footerCtx;
+        let photoCanvas, photoCtx;
+        let originalImage = null;
+        let currentRotation = 0;
+
+        // Elementos DOM
+        const toggleEditorBtn = document.getElementById('toggleEditor');
+        const editorContainer = document.getElementById('editorContainer');
+        const candidatesContainer = document.getElementById('candidatesContainer');
+        const addCandidateBtn = document.getElementById('addCandidate');
+        const candidatesList = document.getElementById('candidatesList');
+        const livePreview = document.getElementById('livePreview');
+        const photoUploadModal = new bootstrap.Modal(document.getElementById('photoUploadModal'));
+        const candidatePhotoInput = document.getElementById('candidatePhotoInput');
+        const dragDropArea = document.getElementById('dragDropArea');
+        const photoCanvasElement = document.getElementById('photoCanvas');
+        const confirmPhotoUpload = document.getElementById('confirmPhotoUpload');
+        const rotateLeftBtn = document.getElementById('rotateLeftBtn');
+        const rotateRightBtn = document.getElementById('rotateRightBtn');
+        const resetPhotoBtn = document.getElementById('resetPhotoBtn');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const shareBtn = document.getElementById('shareBtn');
+
+        // Configurações
+        let settings = {
+            title: "QUITAÇÕES MENSAL",
+            month: "MAIO",
+            companyName: "SE TE CAPITAL ASSESSORIA",
+            companySlogan: "Não é o que fazemos que nos define. É como fazemos.",
+            primaryColor: "#2c3e50",
+            secondaryColor: "#3498db",
+            accentColor: "#e74c3c",
+            enableParticles: true,
+            enableAnimations: true
+        };
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            initCanvas();
+            renderCandidatesEditor();
+            renderCandidatesList();
+            updateLivePreview();
+            setupEventListeners();
+            applySettings();
+            initTooltips();
+            animate();
+        });
+
+        function initCanvas() {
+            // Configurar canvas do cabeçalho
+            headerCanvas = document.getElementById('headerCanvas');
+            headerCtx = headerCanvas.getContext('2d');
+            headerCanvas.width = headerCanvas.offsetWidth;
+            headerCanvas.height = headerCanvas.offsetHeight;
+            
+            // Configurar canvas do rodapé
+            footerCanvas = document.getElementById('footerCanvas');
+            footerCtx = footerCanvas.getContext('2d');
+            footerCanvas.width = footerCanvas.offsetWidth;
+            footerCanvas.height = footerCanvas.offsetHeight;
+            
+            // Configurar canvas da foto
+            photoCanvas = document.getElementById('photoCanvas');
+            photoCtx = photoCanvas.getContext('2d');
+            
+            // Criar partículas para o cabeçalho
+            if (settings.enableParticles) {
+                createParticles();
+            }
+            
+            // Redimensionar canvas quando a janela for redimensionada
+            window.addEventListener('resize', function() {
+                headerCanvas.width = headerCanvas.offsetWidth;
+                headerCanvas.height = headerCanvas.offsetHeight;
+                footerCanvas.width = footerCanvas.offsetWidth;
+                footerCanvas.height = footerCanvas.offsetHeight;
+                if (settings.enableParticles) {
+                    createParticles();
+                }
+            });
+        }
+
+        function createParticles() {
+            particles = [];
+            const particleCount = Math.floor(headerCanvas.width * headerCanvas.height / 1000);
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * headerCanvas.width,
+                    y: Math.random() * headerCanvas.height,
+                    size: Math.random() * 3 + 1,
+                    speedX: Math.random() * 0.5 - 0.25,
+                    speedY: Math.random() * 0.5 - 0.25,
+                    opacity: Math.random() * 0.5 + 0.1
+                });
+            }
+        }
+
+        function animate() {
+            if (!settings.enableAnimations) return;
+            
+            // Limpar canvas
+            headerCtx.clearRect(0, 0, headerCanvas.width, headerCanvas.height);
+            footerCtx.clearRect(0, 0, footerCanvas.width, footerCanvas.height);
+            
+            // Desenhar gradiente no rodapé
+            const footerGradient = footerCtx.createLinearGradient(0, 0, 0, footerCanvas.height);
+            footerGradient.addColorStop(0, settings.primaryColor);
+            footerGradient.addColorStop(1, settings.secondaryColor);
+            footerCtx.fillStyle = footerGradient;
+            footerCtx.fillRect(0, 0, footerCanvas.width, footerCanvas.height);
+            
+            // Atualizar e desenhar partículas no cabeçalho
+            if (settings.enableParticles) {
+                headerCtx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+                headerCtx.fillRect(0, 0, headerCanvas.width, headerCanvas.height);
+                
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    
+                    // Atualizar posição
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    
+                    // Rebater nas bordas
+                    if (p.x < 0 || p.x > headerCanvas.width) p.speedX *= -1;
+                    if (p.y < 0 || p.y > headerCanvas.height) p.speedY *= -1;
+                    
+                    // Desenhar partícula
+                    headerCtx.beginPath();
+                    headerCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    headerCtx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                    headerCtx.fill();
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+
+        function setupEventListeners() {
+            // Toggle editor
+            toggleEditorBtn.addEventListener('click', function() {
+                editorContainer.classList.toggle('show-editor');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-sliders-h');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Configurações
+            document.getElementById('pollTitle').addEventListener('input', function() {
+                settings.title = this.value;
+                applySettings();
+                updateLivePreview();
+            });
+
+            document.getElementById('pollMonth').addEventListener('input', function() {
+                settings.month = this.value;
+                document.getElementById('displayMonth').textContent = this.value;
+                updateLivePreview();
+            });
+
+            document.getElementById('companyName').addEventListener('input', function() {
+                settings.companyName = this.value;
+                document.getElementById('displayCompanyName').textContent = this.value;
+                updateLivePreview();
+            });
+
+            document.getElementById('companySlogan').addEventListener('input', function() {
+                settings.companySlogan = this.value;
+                document.getElementById('displayCompanySlogan').textContent = this.value;
+                updateLivePreview();
+            });
+
+            document.getElementById('primaryColor').addEventListener('input', function() {
+                settings.primaryColor = this.value;
+                applySettings();
+                updateLivePreview();
+            });
+
+            document.getElementById('secondaryColor').addEventListener('input', function() {
+                settings.secondaryColor = this.value;
+                applySettings();
+                updateLivePreview();
+            });
+
+            document.getElementById('accentColor').addEventListener('input', function() {
+                settings.accentColor = this.value;
+                applySettings();
+                updateLivePreview();
+            });
+
+            document.getElementById('enableParticles').addEventListener('change', function() {
+                settings.enableParticles = this.checked;
+                if (settings.enableParticles && particles.length === 0) {
+                    createParticles();
+                }
+            });
+
+            document.getElementById('enableAnimations').addEventListener('change', function() {
+                settings.enableAnimations = this.checked;
+                if (settings.enableAnimations) {
+                    animate();
+                }
+            });
+
+            // Adicionar candidato
+            addCandidateBtn.addEventListener('click', function() {
+                const newId = candidates.length > 0 ? Math.max(...candidates.map(c => c.id)) + 1 : 1;
+                candidates.push({
+                    id: newId,
+                    name: "NOVO CANDIDATO",
+                    position: "1",
+                    photo: "",
+                    votes: 0
+                });
+                renderCandidatesEditor();
+                renderCandidatesList();
+                updateLivePreview();
+            });
+
+            // Drag and drop para fotos
+            dragDropArea.addEventListener('click', function() {
+                candidatePhotoInput.click();
+            });
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                dragDropArea.style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
+                dragDropArea.style.borderColor = settings.primaryColor;
+            }
+
+            function unhighlight() {
+                dragDropArea.style.backgroundColor = 'rgba(52, 152, 219, 0.05)';
+                dragDropArea.style.borderColor = settings.secondaryColor;
+            }
+
+            dragDropArea.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if (files.length > 0 && files[0].type.match('image.*')) {
+                    handleImageUpload(files[0]);
+                }
+            }
+
+            candidatePhotoInput.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    handleImageUpload(e.target.files[0]);
+                }
+            });
+
+            function handleImageUpload(file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    originalImage = new Image();
+                    originalImage.onload = function() {
+                        renderPhotoCanvas();
+                        photoCanvas.style.display = 'block';
+                    };
+                    originalImage.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Rotação de imagem
+            rotateLeftBtn.addEventListener('click', function() {
+                currentRotation -= 90;
+                renderPhotoCanvas();
+            });
+
+            rotateRightBtn.addEventListener('click', function() {
+                currentRotation += 90;
+                renderPhotoCanvas();
+            });
+
+            resetPhotoBtn.addEventListener('click', function() {
+                currentRotation = 0;
+                renderPhotoCanvas();
+            });
+
+            confirmPhotoUpload.addEventListener('click', function() {
+                if (currentEditingCandidateId && photoCanvas.style.display !== 'none') {
+                    const candidate = candidates.find(c => c.id === currentEditingCandidateId);
+                    if (candidate) {
+                        candidate.photo = photoCanvas.toDataURL('image/jpeg', 0.9);
+                        renderCandidatesEditor();
+                        renderCandidatesList();
+                        updateLivePreview();
+                    }
+                }
+                photoUploadModal.hide();
+                currentRotation = 0;
+                photoCanvas.style.display = 'none';
+            });
+
+            // Botões flutuantes
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            shareBtn.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: `${settings.title} - ${settings.month}`,
+                        text: `Confira a enquete de quitações mensal de ${settings.month}`,
+                        url: window.location.href
+                    }).catch(err => {
+                        console.log('Erro ao compartilhar:', err);
+                        fallbackShare();
+                    });
+                } else {
+                    fallbackShare();
+                }
+            });
+
+            function fallbackShare() {
+                const shareUrl = `${window.location.href}?title=${encodeURIComponent(settings.title)}&month=${encodeURIComponent(settings.month)}`;
+                alert(`Compartilhe este link: ${shareUrl}`);
+            }
+
+            // Votar em candidatos
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.vote-btn')) {
+                    const btn = e.target.closest('.vote-btn');
+                    const candidateId = parseInt(btn.getAttribute('data-id'));
+                    voteForCandidate(candidateId);
+                }
+            });
+        }
+
+        function renderPhotoCanvas() {
+            if (!originalImage) return;
+            
+            const cropOption = document.querySelector('input[name="cropOption"]:checked').value;
+            let width, height;
+            
+            if (cropOption === 'square') {
+                // Quadrado (1:1)
+                const size = Math.min(originalImage.width, originalImage.height);
+                width = size;
+                height = size;
+            } else {
+                // Retrato (3:4)
+                const ratio = 3 / 4;
+                width = originalImage.width;
+                height = originalImage.width / ratio;
+                
+                if (height > originalImage.height) {
+                    height = originalImage.height;
+                    width = originalImage.height * ratio;
+                }
+            }
+            
+            // Ajustar tamanho do canvas
+            photoCanvas.width = width;
+            photoCanvas.height = height;
+            
+            // Limpar canvas
+            photoCtx.clearRect(0, 0, photoCanvas.width, photoCanvas.height);
+            
+            // Rotacionar e desenhar imagem
+            photoCtx.save();
+            photoCtx.translate(photoCanvas.width / 2, photoCanvas.height / 2);
+            photoCtx.rotate(currentRotation * Math.PI / 180);
+            
+            // Ajustar escala para compensar a rotação
+            const scale = currentRotation % 180 === 0 ? 1 : Math.sqrt(2);
+            photoCtx.scale(scale, scale);
+            
+            photoCtx.drawImage(
+                originalImage,
+                (originalImage.width - width) / 2,
+                (originalImage.height - height) / 2,
+                width,
+                height,
+                -width / 2,
+                -height / 2,
+                width,
+                height
+            );
+            
+            photoCtx.restore();
+        }
+
+        function renderCandidatesEditor() {
+            candidatesContainer.innerHTML = '';
+            candidates.forEach(candidate => {
+                const candidateElement = document.createElement('div');
+                candidateElement.className = 'card mb-3';
+                candidateElement.innerHTML = `
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="mb-3">
+                                    <label for="name-${candidate.id}" class="form-label"><i class="fas fa-user-tag"></i>Nome</label>
+                                    <input type="text" class="form-control candidate-name" id="name-${candidate.id}" value="${candidate.name}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="position-${candidate.id}" class="form-label"><i class="fas fa-trophy"></i>Posição</label>
+                                    <select class="form-select candidate-position" id="position-${candidate.id}">
+                                        <option value="QUITADOS" ${candidate.position === 'QUITADOS' ? 'selected' : ''}>QUITADOS</option>
+                                        <option value="1" ${candidate.position === '1' ? 'selected' : ''}>1º</option>
+                                        <option value="2" ${candidate.position === '2' ? 'selected' : ''}>2º</option>
+                                        <option value="3" ${candidate.position === '3' ? 'selected' : ''}>3º</option>
+                                        <option value="4" ${candidate.position === '4' ? 'selected' : ''}>4º</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fas fa-camera"></i>Foto</label>
+                                    <button class="btn btn-outline-primary w-100 upload-photo-btn" data-id="${candidate.id}">
+                                        <i class="fas fa-upload me-2"></i>Upload
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button class="btn btn-danger delete-candidate-btn" data-id="${candidate.id}" data-bs-toggle="tooltip" title="Remover candidato">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                candidatesContainer.appendChild(candidateElement);
+
+                // Event listeners para os inputs deste candidato
+                candidateElement.querySelector(`.candidate-name`).addEventListener('input', function() {
+                    const candidate = candidates.find(c => c.id === candidate.id);
+                    if (candidate) {
+                        candidate.name = this.value;
+                        renderCandidatesList();
+                        updateLivePreview();
+                    }
+                });
+
+                candidateElement.querySelector(`.candidate-position`).addEventListener('change', function() {
+                    const candidate = candidates.find(c => c.id === candidate.id);
+                    if (candidate) {
+                        candidate.position = this.value;
+                        renderCandidatesList();
+                        updateLivePreview();
+                    }
+                });
+
+                candidateElement.querySelector(`.upload-photo-btn`).addEventListener('click', function() {
+                    currentEditingCandidateId = parseInt(this.getAttribute('data-id'));
+                    originalImage = null;
+                    currentRotation = 0;
+                    photoCanvas.style.display = 'none';
+                    photoUploadModal.show();
+                });
+
+                candidateElement.querySelector(`.delete-candidate-btn`).addEventListener('click', function() {
+                    if (confirm('Tem certeza que deseja remover este candidato?')) {
+                        candidates = candidates.filter(c => c.id !== candidate.id);
+                        renderCandidatesEditor();
+                        renderCandidatesList();
+                        updateLivePreview();
+                    }
+                });
+            });
+        }
+
+        function renderCandidatesList() {
+            candidatesList.innerHTML = '';
+            
+            // Ordenar candidatos: primeiro QUITADOS, depois por posição numérica
+            const sortedCandidates = [...candidates].sort((a, b) => {
+                if (a.position === 'QUITADOS' && b.position !== 'QUITADOS') return -1;
+                if (a.position !== 'QUITADOS' && b.position === 'QUITADOS') return 1;
+                if (a.position === 'QUITADOS' && b.position === 'QUITADOS') return 0;
+                return parseInt(a.position) - parseInt(b.position);
+            });
+
+            sortedCandidates.forEach(candidate => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 mb-4';
+                
+                // Criar badge de posição com canvas
+                const badgeCanvas = document.createElement('canvas');
+                badgeCanvas.className = 'badge-canvas';
+                badgeCanvas.width = 60;
+                badgeCanvas.height = 60;
+                const badgeCtx = badgeCanvas.getContext('2d');
+                
+                // Desenhar badge
+                badgeCtx.beginPath();
+                badgeCtx.arc(30, 30, 25, 0, Math.PI * 2);
+                badgeCtx.fillStyle = settings.secondaryColor;
+                badgeCtx.fill();
+                badgeCtx.strokeStyle = 'white';
+                badgeCtx.lineWidth = 3;
+                badgeCtx.stroke();
+                badgeCtx.fillStyle = 'white';
+                badgeCtx.font = 'bold 16px Poppins';
+                badgeCtx.textAlign = 'center';
+                badgeCtx.textBaseline = 'middle';
+                badgeCtx.fillText(candidate.position === 'QUITADOS' ? '✓' : candidate.position, 30, 30);
+                
+                col.innerHTML = `
+                    <div class="candidate-card h-100">
+                        ${candidate.photo ? 
+                            `<img src="${candidate.photo}" class="candidate-photo" alt="${candidate.name}">` : 
+                            `<div class="photo-placeholder">
+                                <canvas class="progress-ring" width="100" height="100">
+                                    Seu navegador não suporta canvas
+                                </canvas>
+                                <i class="fas fa-user no-photo-icon"></i>
+                            </div>`
+                        }
+                        ${badgeCanvas.outerHTML}
+                        <div class="candidate-info">
+                            <h5 class="candidate-name">${candidate.name}</h5>
+                            <div class="position-indicator">
+                                ${candidate.position === 'QUITADOS' ? 
+                                    `<span class="quited-badge"><i class="fas fa-check"></i>QUITADOS</span>` : 
+                                    `<span class="position-badge"><i class="fas fa-arrow-up"></i>POSIÇÃO</span>
+                                    <span>${candidate.position}º</span>`
+                                }
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted small"><i class="fas fa-vote-yea me-1"></i>${candidate.votes} votos</span>
+                                <button class="vote-btn" data-id="${candidate.id}">
+                                    <i class="fas fa-thumbs-up me-2"></i>VOTAR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Adicionar animação de progresso para placeholders sem foto
+                if (!candidate.photo) {
+                    const progressRing = col.querySelector('.progress-ring');
+                    if (progressRing) {
+                        const ctx = progressRing.getContext('2d');
+                        const centerX = progressRing.width / 2;
+                        const centerY = progressRing.height / 2;
+                        const radius = 40;
+                        const progress = Math.min(candidate.votes / 150 * 100, 100); // Máximo de 150 votos para 100%
+                        
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                        ctx.strokeStyle = '#e0e0e0';
+                        ctx.lineWidth = 8;
+                        ctx.stroke();
+                        
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, radius, -Math.PI/2, (progress / 100) * (Math.PI * 2) - Math.PI/2);
+                        ctx.strokeStyle = settings.secondaryColor;
+                        ctx.lineWidth = 8;
+                        ctx.lineCap = 'round';
+                        ctx.stroke();
+                    }
+                }
+                
+                candidatesList.appendChild(col);
+            });
+        }
+
+        function updateLivePreview() {
+            livePreview.innerHTML = `
+                <div class="header text-center" style="background: linear-gradient(135deg, ${settings.primaryColor}, ${settings.secondaryColor});">
+                    <canvas id="previewHeaderCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
+                    <div style="position: relative; z-index: 1;">
+                        <h1>${settings.title}</h1>
+                        <h3>${settings.month}</h3>
+                    </div>
+                </div>
+                
+                <div class="month-display text-center mt-3">
+                    <h4>Mês: <span>${settings.month}</span></h4>
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <span class="badge" style="background-color: ${settings.accentColor}"><i class="fas fa-trophy me-1"></i>1º</span>
+                        <span class="badge" style="background-color: ${settings.secondaryColor}"><i class="fas fa-medal me-1"></i>2º</span>
+                        <span class="badge" style="background-color: ${settings.primaryColor}"><i class="fas fa-award me-1"></i>3º</span>
+                        <span class="badge bg-light text-dark"><i class="fas fa-star me-1"></i>4</span>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    ${candidates.slice(0, 2).map(candidate => `
+                        <div class="col-md-6 mb-3">
+                            <div class="candidate-card">
+                                ${candidate.photo ? 
+                                    `<img src="${candidate.photo}" class="candidate-photo" alt="${candidate.name}" style="border-bottom: 4px solid ${settings.secondaryColor};">` : 
+                                    `<div class="photo-placeholder" style="border-bottom: 4px solid ${settings.secondaryColor};">
+                                        <canvas class="progress-ring" width="100" height="100"></canvas>
+                                        <i class="fas fa-user no-photo-icon"></i>
+                                    </div>`
+                                }
+                                <canvas class="badge-canvas" width="60" height="60"></canvas>
+                                <div class="candidate-info">
+                                    <h5 class="candidate-name">${candidate.name}</h5>
+                                    <div class="position-indicator">
+                                        ${candidate.position === 'QUITADOS' ? 
+                                            `<span class="quited-badge" style="background-color: ${settings.successColor}"><i class="fas fa-check"></i>QUITADOS</span>` : 
+                                            `<span class="position-badge" style="background-color: ${settings.secondaryColor}"><i class="fas fa-arrow-up"></i>POSIÇÃO</span>
+                                            <span>${candidate.position}º</span>`
+                                        }
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="text-muted small"><i class="fas fa-vote-yea me-1"></i>${candidate.votes} votos</span>
+                                        <button class="vote-btn" style="background-color: ${settings.accentColor};">
+                                            <i class="fas fa-thumbs-up me-2"></i>VOTAR
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="footer text-center mt-4" style="background: linear-gradient(135deg, ${settings.primaryColor}, ${settings.secondaryColor});">
+                    <canvas id="previewFooterCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
+                    <div style="position: relative; z-index: 1;">
+                        <h5>${settings.companyName}</h5>
+                        <p>${settings.companySlogan}</p>
+                    </div>
+                </div>
+            `;
+            
+            // Desenhar badges na pré-visualização
+            const previewBadges = livePreview.querySelectorAll('.badge-canvas');
+            previewBadges.forEach((badge, index) => {
+                const ctx = badge.getContext('2d');
+                const candidate = candidates[index];
+                
+                ctx.beginPath();
+                ctx.arc(30, 30, 25, 0, Math.PI * 2);
+                ctx.fillStyle = settings.secondaryColor;
+                ctx.fill();
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 16px Poppins';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(candidate.position === 'QUITADOS' ? '✓' : candidate.position, 30, 30);
+            });
+            
+            // Desenhar anéis de progresso na pré-visualização
+            const previewProgressRings = livePreview.querySelectorAll('.progress-ring');
+            previewProgressRings.forEach((ring, index) => {
+                const ctx = ring.getContext('2d');
+                const candidate = candidates[index];
+                const centerX = ring.width / 2;
+                const centerY = ring.height / 2;
+                const radius = 40;
+                const progress = Math.min(candidate.votes / 150 * 100, 100);
+                
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 8;
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, -Math.PI/2, (progress / 100) * (Math.PI * 2) - Math.PI/2);
+                ctx.strokeStyle = settings.secondaryColor;
+                ctx.lineWidth = 8;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+            });
+        }
+
+        function applySettings() {
+            // Aplicar cores CSS
+            document.documentElement.style.setProperty('--primary-color', settings.primaryColor);
+            document.documentElement.style.setProperty('--secondary-color', settings.secondaryColor);
+            document.documentElement.style.setProperty('--accent-color', settings.accentColor);
+            
+            // Atualizar cabeçalho
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.background = `linear-gradient(135deg, ${settings.primaryColor}, ${settings.secondaryColor})`;
+            }
+            
+            // Atualizar rodapé
+            const footer = document.querySelector('.footer');
+            if (footer) {
+                footer.style.background = `linear-gradient(135deg, ${settings.primaryColor}, ${settings.secondaryColor})`;
+            }
+            
+            // Atualizar botões de voto
+            document.querySelectorAll('.vote-btn').forEach(btn => {
+                btn.style.backgroundColor = settings.accentColor;
+            });
+            
+            // Atualizar badges de posição
+            document.querySelectorAll('.position-badge').forEach(badge => {
+                badge.style.backgroundColor = settings.secondaryColor;
+            });
+            
+            // Atualizar bordas das fotos
+            document.querySelectorAll('.candidate-photo, .photo-placeholder').forEach(photo => {
+                photo.style.borderBottom = `4px solid ${settings.secondaryColor}`;
+            });
+        }
+
+        function voteForCandidate(candidateId) {
+            const candidate = candidates.find(c => c.id === candidateId);
+            if (candidate) {
+                candidate.votes++;
+                renderCandidatesList();
+                
+                // Efeito visual de confirmação de voto
+                const card = document.querySelector(`.vote-btn[data-id="${candidateId}"]`).closest('.candidate-card');
+                card.style.boxShadow = `0 0 20px 5px ${settings.accentColor}`;
+                setTimeout(() => {
+                    card.style.boxShadow = '0 6px 15px rgba(0, 0, 0, 0.1)';
+                }, 500);
+            }
+        }
+
+        function initTooltips() {
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        }
+    </script>
+</body>
+</html>

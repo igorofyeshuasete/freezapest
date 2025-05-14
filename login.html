@@ -1,0 +1,359 @@
+-login.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="login setor ACORDO">
+    <title>Portal de Acesso Seguro</title>
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+
+    <!-- Enhanced Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neo-primary: #00ff00;
+            --neo-secondary: #003300;
+            --neo-accent: #00cc00;
+            --neo-dark: #000000;
+            --neo-light: #ccf5ff;
+            --matrix-bg: #000900;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--matrix-bg);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            background: var(--matrix-bg);
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .matrix-bg canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw !important; /* Force full width */
+            height: 100vh !important; /* Force full height */
+            object-fit: cover; /* Ensure full coverage */
+        }
+
+        .secure-container {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 480px;
+            margin: 2rem auto;
+        }
+
+        .neo-card {
+            background: rgba(0, 26, 0, 0.95);
+            border: 1px solid var(--neo-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .neo-input {
+            background: var(--neo-dark);
+            border: 1px solid var(--neo-primary);
+            color: var(--neo-primary);
+            padding: 0.75rem;
+            width: 100%;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .neo-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--neo-primary);
+        }
+
+        .neo-button {
+            background: var(--neo-dark);
+            color: var(--neo-primary);
+            border: 1px solid var(--neo-primary);
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .neo-button:hover {
+            background: var(--neo-primary);
+            color: var(--neo-dark);
+        }
+
+        .security-indicator {
+            height: 4px;
+            background: var(--neo-dark);
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .security-indicator::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 0;
+            background: var(--neo-primary);
+            transition: width 0.3s ease;
+        }
+
+        .password-strength-weak::before { width: 33%; background: #ff0000; }
+        .password-strength-medium::before { width: 66%; background: #ffff00; }
+        .password-strength-strong::before { width: 100%; background: var(--neo-primary); }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.4); }
+            100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); }
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .captcha-container {
+            margin: 1rem 0;
+            padding: 1rem;
+            border: 1px dashed var(--neo-primary);
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2; /* Higher than matrix background */
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .secure-container {
+            margin: 0 auto; /* Remove top margin */
+            padding: 1rem;
+            width: 100%;
+            max-width: 480px;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrix"></div>
+    <div class="content-wrapper">
+        <div class="secure-container">
+            <div class="neo-card">
+                <h2 style="color: var(--neo-primary); text-align: center; margin-bottom: 2rem;">
+                    login setor ACORDO
+                </h2>
+
+                <form id="secureLoginForm" onsubmit="return validateForm(event)">
+                    <div class="input-group">
+                        <input type="text" 
+                            class="neo-input" 
+                            id="username" 
+                            name="username" 
+                            autocomplete="off"
+                            required
+                            pattern="^[a-zA-Z0-9_]{8,20}$"
+                            title="8-20 characters, letters, numbers and underscore only">
+                        <div class="error-message" id="username-error">
+                            Invalid username format
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="password" 
+                            class="neo-input" 
+                            id="password" 
+                            name="password"
+                            required
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{12,}$">
+                        <div class="security-indicator" id="passwordStrength"></div>
+                        <div class="error-message" id="password-error">
+                            Password must be at least 12 characters with numbers, letters and symbols
+                        </div>
+                    </div>
+
+                    <div class="captcha-container" id="customCaptcha">
+                        <!-- Dynamic CAPTCHA will be inserted here -->
+                    </div>
+
+                    <button type="submit" class="neo-button w-100">
+                        AUTENTICAÇÂO
+                    </button>
+                </form>
+
+                <div class="mt-4 text-center">
+                    <a href="#" style="color: var(--neo-primary); text-decoration: none; font-size: 0.9rem;">
+                        Reset Security Token
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        document.getElementById('matrix').appendChild(canvas);
+
+        function resizeCanvas() {
+            // Get actual window dimensions
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            // Set canvas dimensions to match window
+            canvas.width = windowWidth;
+            canvas.height = windowHeight;
+            
+            // Update variables for matrix effect
+            width = windowWidth;
+            height = windowHeight;
+            
+            // Adjust column count based on window width
+            cols = Math.floor(windowWidth / 15); // Smaller number = more dense columns
+            ypos = Array(cols).fill(0);
+            
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        // Initial setup
+        let width, height, cols, ypos;
+
+        // Matrix rain animation with enhanced visuals
+        function matrix() {
+            // Semi-transparent fade for trail effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Matrix character style
+            ctx.fillStyle = '#0F0'; // Bright green
+            ctx.font = '12pt monospace';
+            
+            // Draw characters
+            ypos.forEach((y, ind) => {
+                // Random character from extended range
+                const char = String.fromCharCode(Math.random() * (128 - 33) + 33);
+                
+                // Calculate x position
+                const x = ind * 15;
+                
+                // Add random brightness for some characters
+                if (Math.random() > 0.98) {
+                    ctx.fillStyle = '#FFF'; // Occasional bright white
+                } else {
+                    ctx.fillStyle = '#0F0'; // Regular green
+                }
+                
+                // Draw the character
+                ctx.fillText(char, x, y);
+                
+                // Reset position or move down
+                if (y > height) {
+                    ypos[ind] = 0;
+                } else {
+                    ypos[ind] = y + 15 + Math.random() * 10;
+                }
+            });
+        }
+
+        // Event listeners
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', () => {
+            resizeCanvas();
+            setInterval(matrix, 50); // Faster animation
+        });
+
+        // Password Strength Checker
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const indicator = document.getElementById('passwordStrength');
+            
+            const strength = checkPasswordStrength(password);
+            
+            indicator.className = 'security-indicator';
+            if (strength === 'weak') indicator.classList.add('password-strength-weak');
+            if (strength === 'medium') indicator.classList.add('password-strength-medium');
+            if (strength === 'strong') indicator.classList.add('password-strength-strong');
+        });
+
+        function checkPasswordStrength(password) {
+            const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{12,})');
+            const mediumRegex = new RegExp('^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})');
+            
+            if (strongRegex.test(password)) return 'strong';
+            if (mediumRegex.test(password)) return 'medium';
+            return 'weak';
+        }
+
+        // Form Validation with Rate Limiting
+        let attemptCount = 0;
+        const maxAttempts = 3;
+        let lastAttemptTime = 0;
+
+        function validateForm(event) {
+            event.preventDefault();
+            
+            const now = Date.now();
+            if (now - lastAttemptTime < 2000) { // 2 second cooldown
+                alert('Please wait before trying again');
+                return false;
+            }
+            
+            if (attemptCount >= maxAttempts) {
+                alert('Maximum attempts reached. Please try again later.');
+                return false;
+            }
+            
+            lastAttemptTime = now;
+            attemptCount++;
+            
+            // Add your authentication logic here
+            return false; // Prevent form submission for this example
+        }
+
+        // Generate Dynamic CAPTCHA
+        function generateCaptcha() {
+            const operations = ['+', '-', '*'];
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            
+            const captchaContainer = document.getElementById('customCaptcha');
+            captchaContainer.innerHTML = `
+                <div style="color: var(--neo-primary);">
+                    Solve: ${num1} ${operation} ${num2} = 
+                    <input type="number" class="neo-input" style="width: 80px" id="captchaAnswer">
+                </div>
+            `;
+        }
+
+        generateCaptcha();
+    </script>
+</body>
+</html>

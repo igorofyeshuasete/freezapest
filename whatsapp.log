@@ -1,0 +1,51 @@
+2025-03-20 19:25:18,230 - ERROR - Error sending message: Message: session not created: Chrome failed to start: crashed.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location C:\Program Files\Google\Chrome\Application\chrome.exe is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7CA7DFE65+26629]
+	(No symbol) [0x00007FF7CA746030]
+	(No symbol) [0x00007FF7CA5D931A]
+	(No symbol) [0x00007FF7CA615D97]
+	(No symbol) [0x00007FF7CA611B2D]
+	(No symbol) [0x00007FF7CA665D0B]
+	(No symbol) [0x00007FF7CA6652E0]
+	(No symbol) [0x00007FF7CA657883]
+	(No symbol) [0x00007FF7CA620550]
+	(No symbol) [0x00007FF7CA621803]
+	GetHandleVerifier [0x00007FF7CAB372DD+3529853]
+	GetHandleVerifier [0x00007FF7CAB4DA42+3621858]
+	GetHandleVerifier [0x00007FF7CAB424F3+3575443]
+	GetHandleVerifier [0x00007FF7CA8AB79A+860474]
+	(No symbol) [0x00007FF7CA7508AF]
+	(No symbol) [0x00007FF7CA74CBE4]
+	(No symbol) [0x00007FF7CA74CD86]
+	(No symbol) [0x00007FF7CA73C2E9]
+	BaseThreadInitThunk [0x00007FF8EA1D7374+20]
+	RtlUserThreadStart [0x00007FF8EBD9CC91+33]
+
+2025-03-20 19:25:25,263 - ERROR - Error sending message: Message: session not created: Chrome failed to start: crashed.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location C:\Program Files\Google\Chrome\Application\chrome.exe is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7CA7DFE65+26629]
+	(No symbol) [0x00007FF7CA746030]
+	(No symbol) [0x00007FF7CA5D931A]
+	(No symbol) [0x00007FF7CA615D97]
+	(No symbol) [0x00007FF7CA611B2D]
+	(No symbol) [0x00007FF7CA665D0B]
+	(No symbol) [0x00007FF7CA6652E0]
+	(No symbol) [0x00007FF7CA657883]
+	(No symbol) [0x00007FF7CA620550]
+	(No symbol) [0x00007FF7CA621803]
+	GetHandleVerifier [0x00007FF7CAB372DD+3529853]
+	GetHandleVerifier [0x00007FF7CAB4DA42+3621858]
+	GetHandleVerifier [0x00007FF7CAB424F3+3575443]
+	GetHandleVerifier [0x00007FF7CA8AB79A+860474]
+	(No symbol) [0x00007FF7CA7508AF]
+	(No symbol) [0x00007FF7CA74CBE4]
+	(No symbol) [0x00007FF7CA74CD86]
+	(No symbol) [0x00007FF7CA73C2E9]
+	BaseThreadInitThunk [0x00007FF8EA1D7374+20]
+	RtlUserThreadStart [0x00007FF8EBD9CC91+33]
+
+2025-03-20 19:25:29,312 - INFO - Message history saved successfully

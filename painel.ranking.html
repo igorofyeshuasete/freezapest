@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking Corporativo Elite - Performance</title>
+    
+    <!-- Enhanced CSS Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1a1f35;
+            --secondary: #2a3350;
+            --accent: #4fd1c5;
+            --gold: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+            --silver: linear-gradient(135deg, #c0c0c0 0%, #808080 100%);
+            --bronze: linear-gradient(135deg, #cd7f32 0%, #8b4513 100%);
+            --text-glow: 0 0 10px rgba(79, 209, 197, 0.5);
+        }
+
+        /* Animated Background */
+        body {
+            background: var(--primary);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(79, 209, 197, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(41, 128, 185, 0.1) 0%, transparent 30%);
+            animation: backgroundPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Enhanced Podium Styles */
+        .podium-container {
+            background: rgba(42, 51, 80, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .podium-step {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: bottom;
+        }
+
+        .podium-step:hover {
+            transform: scale(1.05);
+        }
+
+        .position-card {
+            background: var(--secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .position-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .winner-badge {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .first-place .winner-badge { background: var(--gold); }
+        .second-place .winner-badge { background: var(--silver); }
+        .third-place .winner-badge { background: var(--bronze); }
+
+        .stats-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #4fd1c5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--text-glow);
+        }
+
+        /* Progress Animation */
+        .progress-ring {
+            transition: all 0.3s ease;
+        }
+
+        .progress-ring circle {
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .podium-container {
+                padding: 1rem;
+            }
+            
+            .stats-value {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Add this to your existing CSS */
+        .podium-wrapper {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+        }
+
+        .podium-item {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .podium-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .gold { height: 500px; border-color: var(--gold); }
+        .silver { height: 450px; border-color: var(--silver); }
+        .bronze { height: 400px; border-color: var(--bronze); }
+
+        .rank-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .company-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-icon img {
+            width: 80%;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .progress-ring-circle {
+            fill: transparent;
+            stroke: var(--accent);
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: all 0.3s ease;
+        }
+
+        .percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .champion-crown {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffd700;
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.5));
+        }
+
+        @keyframes fa-shine {
+            0% { text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+            50% { text-shadow: 0 0 20px rgba(255,215,0,0.8); }
+            100% { text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+        }
+
+        .fa-shine {
+            animation: fa-shine 2s infinite;
+        }
+
+        /* Add to your existing CSS */
+        .stage-container {
+            perspective: 1000px;
+            padding: 4rem 0;
+        }
+
+        .podium-3d {
+            transform-style: preserve-3d;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 2rem;
+        }
+
+        .podium-platform {
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .platform-3d {
+            transform-style: preserve-3d;
+            position: relative;
+            transform: rotateX(-20deg) rotateY(10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .platform-3d:hover {
+            transform: rotateX(-15deg) rotateY(15deg) scale(1.05);
+        }
+
+        .platform-top {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            border-radius: 15px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(100px);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .platform-front {
+            width: 300px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ffd700, #b8860b);
+            position: absolute;
+            bottom: -100px;
+            transform: rotateX(-90deg);
+            transform-origin: top;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .winner-aura {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 70%);
+            animation: pulse 2s infinite;
+        }
+
+        .winner-spotlight {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1000px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            transform-origin: top;
+            animation: spotlight 4s infinite;
+        }
+
+        .champion-avatar {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+
+        .champion-effect {
+            position: absolute;
+            inset: 0;
+            border: 2px solid rgba(255,215,0,0.5);
+            border-radius: 50%;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        .champion-name {
+            font-size: 2rem;
+            color: #fff;
+            text-align: center;
+            margin-top: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes spotlight {
+            0%, 100% { transform: translateX(-50%) rotateZ(-20deg); opacity: 0.3; }
+            50% { transform: translateX(-50%) rotateZ(20deg); opacity: 0.5; }
+        }
+
+        @keyframes borderRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+            50% { text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 30px rgba(255,215,0,0.6); }
+        }
+
+        .champion-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Enhanced 3D Podium Styles */
+        .podium-scene {
+            perspective: 1200px;
+            padding: 4rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .podium-3d {
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .champion-platform {
+            transform-style: preserve-3d;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .platform-3d-wrapper {
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(10deg);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .platform-3d-wrapper:hover {
+            transform: rotateX(-15deg) rotateY(15deg) scale(1.05);
+        }
+
+        .platform-stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Holographic Effect */
+        .holo-effect {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.1) 0%,
+                rgba(255,255,255,0) 50%,
+                rgba(255,255,255,0.1) 100%);
+            animation: holoShift 3s linear infinite;
+        }
+
+        /* Champion Content */
+        .champion-content {
+            position: relative;
+            padding: 2rem;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -10px;
+            border: 3px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            animation: ringRotate 4s linear infinite;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+
+        .champion-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .champion-avatar:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes holoShift {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes ringRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Particle System */
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFade 1s ease-out forwards;
+        }
+
+        @keyframes particleFade {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
+
+        /* Crown Badge */
+        .crown-badge {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .crown-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.5) 0%, transparent 70%);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Add these styles to your existing CSS */
+        .celebration-effects {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .spotlight-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .celebration-spotlight {
+            position: absolute;
+            width: 100px;
+            height: 1000px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            animation: rotateSpotlight 4s infinite;
+        }
+
+        .confetti-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .winner-pulse {
+            animation: winnerPulse 3s infinite;
+        }
+
+        @keyframes winnerPulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.2); }
+        }
+
+        @keyframes rotateSpotlight {
+            0% { transform: rotate(-45deg) translateY(-50%); }
+            100% { transform: rotate(45deg) translateY(-50%); }
+        }
+
+        /* Enhanced podium items */
+        .podium-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .podium-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, 
+                transparent 0%,
+                rgba(255,255,255,0.1) 50%,
+                transparent 100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Celebration animations */
+        .celebration-burst {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: burst 1s ease-out forwards;
+        }
+
+        @keyframes burst {
+            0% { 
+                transform: scale(0);
+                opacity: 1;
+                box-shadow: 0 0 20px 5px var(--color);
+            }
+            100% { 
+                transform: scale(4);
+                opacity: 0;
+                box-shadow: 0 0 40px 10px var(--color);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-5">
+        <div class="podium-container">
+            <h1 class="display-4 text-center text-white mb-5">
+                <i class="fas fa-crown fa-shine me-3"></i>
+                Top 5 Performance
+            </h1>
+
+            <!-- Enhanced Podium Section -->
+            <div class="podium-wrapper">
+                <div class="row g-4 align-items-end justify-content-center">
+                    <!-- 2nd Place -->
+                    <div class="col-lg-2 order-lg-1">
+                        <div class="podium-item silver" data-aos="fade-right">
+                            <div class="rank-badge">2</div>
+                            <div class="company-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3061/3061341.png" alt="Company Icon" class="img-fluid">
+                            </div>
+                            <div class="content">
+                                <h3>Vale S.A.</h3>
+                                <p class="stats">R$ 28M</p>
+                                <div class="progress-bar-wrapper">
+                                    <div class="progress-ring">
+                                        <svg width="120" height="120">
+                                            <circle r="54" cx="60" cy="60" class="progress-ring-circle" data-percent="85"/>
+                                        </svg>
+                                        <span class="percentage">85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1st Place -->
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="podium-item gold" data-aos="fade-down">
+                            <div class="rank-badge">1</div>
+                            <div class="champion-crown">
+                                <i class="fas fa-crown fa-3x"></i>
+                            </div>
+                            <div class="company-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3061/3061357.png" alt="Company Icon" class="img-fluid">
+                            </div>
+                            <div class="content">
+                                <h2>Petrobras</h2>
+                                <p class="stats">R$ 35M</p>
+                                <div class="progress-bar-wrapper">
+                                    <div class="progress-ring">
+                                        <svg width="140" height="140">
+                                            <circle r="64" cx="70" cy="70" class="progress-ring-circle" data-percent="95"/>
+                                        </svg>
+                                        <span class="percentage">95%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stage-container">
+                        <div class="podium-3d">
+                <!-- First Place - Champion Platform -->
+                <div class="podium-platform champion aos-init aos-animate" data-aos="zoom-in">
+                <div class="platform-3d gold" style="transform: rotateX(-20deg) rotateY(10deg);">
+                <div class="platform-top">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5X-KeQxEBwbFBPnP8HK9JnK5PLPTPPQRrpg&amp;s" alt="Champion" class="avatar-img">
+                <div class="winner-spotlight"></div>
+                <div class="champion-avatar">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5X-KeQxEBwbFBPnP8HK9JnK5PLPTPPQRrpg&amp;s" alt="Champion" class="avatar-img">
+                <div class="champion-effect"></div>
+                <div class="particle" style="width: 6.55627px; height: 6.55627px;"></div><div class="particle" style="width: 4.81099px; height: 4.81099px;"></div><div class="particle" style="width: 10.8611px; height: 10.8611px;"></div><div class="particle" style="width: 11.725px; height: 11.725px;"></div><div class="particle" style="width: 11.7109px; height: 11.7109px;"></div><div class="particle" style="width: 8.58605px; height: 8.58605px;"></div><div class="particle" style="width: 7.33077px; height: 7.33077px;"></div><div class="particle" style="width: 5.81323px; height: 5.81323px;"></div><div class="particle" style="width: 9.60912px; height: 9.60912px;"></div><div class="particle" style="width: 6.21304px; height: 6.21304px;"></div><div class="particle" style="width: 7.36657px; height: 7.36657px;"></div><div class="particle" style="width: 9.11675px; height: 9.11675px;"></div><div class="particle" style="width: 11.3016px; height: 11.3016px;"></div><div class="particle" style="width: 9.24796px; height: 9.24796px;"></div><div class="particle" style="width: 7.94821px; height: 7.94821px;"></div><div class="particle" style="width: 8.57901px; height: 8.57901px;"></div><div class="particle" style="width: 7.95694px; height: 7.95694px;"></div><div class="particle" style="width: 9.76856px; height: 9.76856px;"></div><div class="particle" style="width: 4.69248px; height: 4.69248px;"></div><div class="particle" style="width: 5.03155px; height: 5.03155px;"></div><div class="particle" style="width: 5.66195px; height: 5.66195px;"></div><div class="particle" style="width: 5.69844px; height: 5.69844px;"></div><div class="particle" style="width: 4.26707px; height: 4.26707px;"></div><div class="particle" style="width: 6.92609px; height: 6.92609px;"></div><div class="particle" style="width: 9.83632px; height: 9.83632px;"></div><div class="particle" style="width: 11.0458px; height: 11.0458px;"></div><div class="particle" style="width: 10.4594px; height: 10.4594px;"></div><div class="particle" style="width: 6.89075px; height: 6.89075px;"></div><div class="particle" style="width: 5.57416px; height: 5.57416px;"></div><div class="particle" style="width: 9.98911px; height: 9.98911px;"></div></div>
+                <div class="champion-info">
+                <h2 class="champion-name">Acordo</h2>
+                <div class="champion-score">campeão</div>
+                <div class="champion-badge">
+                <i class="fas fa-crown"></i>
+                <span class="rank">1</span>
+                </div>
+                </div>
+                </div>
+                <div class="platform-center">1</div>
+                </div>
+                </div></div>
+                    </div>
+                    <!-- 3rd Place -->
+                    <div class="col-lg-2 order-lg-3">
+                        <div class="podium-item bronze" data-aos="fade-left">
+                            <div class="rank-badge">3</div>
+                            <div class="company-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3061/3061336.png" alt="Company Icon" class="img-fluid">
+                            </div>
+                            <div class="content">
+                                <h3>Itaú</h3>
+                                <p class="stats">R$ 25M</p>
+                                <div class="progress-bar-wrapper">
+                                    <div class="progress-ring">
+                                        <svg width="120" height="120">
+                                            <circle r="54" cx="60" cy="60" class="progress-ring-circle" data-percent="75"/>
+                                        </svg>
+                                        <span class="percentage">75%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4th Place -->
+                    <div class="col-lg-2 order-lg-4">
+                        <div class="podium-item" data-aos="fade-up">
+                            <div class="rank-badge">4</div>
+                            <div class="company-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3061/3061334.png" alt="Company Icon" class="img-fluid">
+                            </div>
+                            <div class="content">
+                                <h4>Bradesco</h4>
+                                <p class="stats">R$ 22M</p>
+                                <div class="progress-ring small">
+                                    <svg width="100" height="100">
+                                        <circle r="44" cx="50" cy="50" class="progress-ring-circle" data-percent="65"/>
+                                    </svg>
+                                    <span class="percentage">65%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5th Place -->
+                    <div class="col-lg-2 order-lg-5">
+                        <div class="podium-item" data-aos="fade-up">
+                            <div class="rank-badge">5</div>
+                            <div class="company-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3061/3061332.png" alt="Company Icon" class="img-fluid">
+                            </div>
+                            <div class="content">
+                                <h4>Santander</h4>
+                                <p class="stats">R$ 20M</p>
+                                <div class="progress-ring small">
+                                    <svg width="100" height="100">
+                                        <circle r="44" cx="50" cy="50" class="progress-ring-circle" data-percent="60"/>
+                                    </svg>
+                                    <span class="percentage">60%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Podium Section -->
+    <div class="stage-container">
+        <div class="podium-3d">
+            <!-- First Place - Champion Platform -->
+            <div class="podium-platform champion" data-aos="zoom-in">
+                <div class="platform-3d gold">
+                    <div class="platform-top">
+                        <div class="winner-aura"></div>
+                        <div class="winner-spotlight"></div>
+                        <div class="champion-avatar">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3061/3061357.png" alt="Champion" class="avatar-img">
+                            <div class="champion-effect"></div>
+                        </div>
+                        <div class="champion-info">
+                            <h2 class="champion-name">Petrobras</h2>
+                            <div class="champion-score">R$ 35M</div>
+                            <div class="champion-badge">
+                                <i class="fas fa-crown"></i>
+                                <span class="rank">1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="platform-front">1</div>
+                </div>
+            </div>
+
+            <!-- Second Place Platform -->
+            <div class="podium-platform silver-position" data-aos="zoom-in" data-aos-delay="200">
+                <!-- Similar structure but smaller -->
+            </div>
+
+            <!-- Third Place Platform -->
+            <div class="podium-platform bronze-position" data-aos="zoom-in" data-aos-delay="400">
+                <!-- Similar structure but smaller -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Podium Scene -->
+    <div class="podium-scene">
+        <div class="podium-3d">
+            <div class="champion-platform" data-aos="fade-down">
+                <div class="platform-3d-wrapper">
+                    <div class="platform-stage gold">
+                        <!-- Holographic Effect -->
+                        <div class="holo-effect"></div>
+                        
+                        <!-- Champion Spotlight -->
+                        <div class="champion-spotlight"></div>
+                        
+                        <!-- Champion Content -->
+                        <div class="champion-content">
+                            <div class="avatar-container">
+                                <div class="avatar-ring"></div>
+                                <div class="avatar-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3061/3061357.png" 
+                                         alt="Champion" 
+                                         class="champion-avatar">
+                                </div>
+                                <div class="particle-container"></div>
+                            </div>
+                            
+                            <div class="champion-details">
+                                <h2 class="champion-name">Petrobras</h2>
+                                <div class="champion-value">R$ 35M</div>
+                                <div class="performance-indicator">
+                                    <div class="progress-ring">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="progress-ring-circle" cx="50" cy="50" r="45"/>
+                                        </svg>
+                                        <span class="progress-value">95%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Crown Badge -->
+                            <div class="crown-badge">
+                                <i class="fas fa-crown"></i>
+                                <div class="crown-glow"></div>
+                            </div>
+                        </div>
+
+                        <!-- Platform Base -->
+                        <div class="platform-base">
+                            <div class="platform-face front">1</div>
+                            <div class="platform-face left"></div>
+                            <div class="platform-face right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // GSAP Animations
+        gsap.from('.podium-step', {
+            duration: 1,
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power4.out'
+        });
+
+        // Progress Ring Animation
+        const rings = document.querySelectorAll('.progress-ring circle');
+        rings.forEach(ring => {
+            const percent = ring.getAttribute('data-percent');
+            const circumference = 440;
+            const offset = circumference - (percent / 100 * circumference);
+            ring.style.strokeDashoffset = offset;
+        });
+
+        // Hover Effects
+        document.querySelectorAll('.position-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    scale: 1.05,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // 3D Tilt Effect
+        const platforms = document.querySelectorAll('.platform-3d');
+        
+        platforms.forEach(platform => {
+            platform.addEventListener('mousemove', (e) => {
+                const rect = platform.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 30;
+                const angleY = (centerX - x) / 30;
+                
+                platform.style.transform = `rotateX(${-angleX}deg) rotateY(${-angleY}deg)`;
+            });
+            
+            platform.addEventListener('mouseleave', () => {
+                platform.style.transform = 'rotateX(-20deg) rotateY(10deg)';
+            });
+        });
+    });
+
+    // Particle Effects
+    const createParticles = () => {
+        const champion = document.querySelector('.champion-avatar');
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 8 + 4;
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 2 + 1;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        champion.appendChild(particle);
+        
+        const animation = particle.animate([
+            { transform: 'translate(0, 0)', opacity: 1 },
+            { transform: `translate(${Math.cos(angle) * 100}px, ${Math.sin(angle) * 100}px)`, opacity: 0 }
+        ], {
+            duration: 1000,
+            easing: 'cubic-bezier(0,0,0.2,1)'
+        });
+        
+        animation.onfinish = () => particle.remove();
+    };
+
+    setInterval(createParticles, 100);
+
+    // Update progress values in real-time
+    function updateProgress() {
+        const cards = document.querySelectorAll('.position-card');
+        cards.forEach(card => {
+            const progress = card.querySelector('.progress-value');
+            const currentValue = parseInt(progress.textContent);
+            const newValue = currentValue + Math.random() * 2;
+            progress.textContent = Math.min(newValue, 100).toFixed(1) + '%';
+        });
+    }
+
+    setInterval(updateProgress, 3000);
+
+    // Enhanced particle system
+    function createEnhancedParticles() {
+        const container = document.querySelector('.particle-container');
+        if (!container) return;
+
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 8 + 4;
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 100 + 50;
+        
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+        
+        particle.style.setProperty('--x', `${x}px`);
+        particle.style.setProperty('--y', `${y}px`);
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        container.appendChild(particle);
+        
+        setTimeout(() => particle.remove(), 1000);
+    }
+
+    setInterval(createEnhancedParticles, 50);
+
+    // 3D mouse tracking
+    document.querySelector('.platform-3d-wrapper').addEventListener('mousemove', (e) => {
+        const element = e.currentTarget;
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        element.style.transform = `
+            rotateX(${-rotateX}deg) 
+            rotateY(${-rotateY}deg)
+            scale(1.05)
+        `;
+    });
+
+    document.querySelector('.platform-3d-wrapper').addEventListener('mouseleave', (e) => {
+        e.currentTarget.style.transform = 'rotateX(-20deg) rotateY(10deg)';
+    });
+
+    // Add this JavaScript code
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create spotlight effects
+        const createSpotlights = () => {
+            const containers = document.querySelectorAll('.podium-item');
+            containers.forEach(container => {
+                const spotlight = document.createElement('div');
+                spotlight.className = 'celebration-spotlight';
+                container.appendChild(spotlight);
+            });
+        };
+
+        // Create celebration bursts
+        const createBurst = (element, color) => {
+            const burst = document.createElement('div');
+            burst.className = 'celebration-burst';
+            burst.style.setProperty('--color', color);
+            burst.style.left = Math.random() * 100 + '%';
+            burst.style.top = Math.random() * 100 + '%';
+            element.appendChild(burst);
+            setTimeout(() => burst.remove(), 1000);
+        };
+
+        // Celebration interval
+        setInterval(() => {
+            const podiumItems = document.querySelectorAll('.podium-item');
+            podiumItems.forEach((item, index) => {
+                // Different colors for different positions
+                const colors = ['#ffd700', '#c0c0c0', '#cd7f32', '#4fd1c5', '#4fd1c5'];
+                createBurst(item, colors[index]);
+                
+                // Add pulse effect
+                item.classList.add('winner-pulse');
+                setTimeout(() => item.classList.remove('winner-pulse'), 1000);
+            });
+        }, 3000);
+
+        // Confetti effect for winners
+        const createConfetti = () => {
+            const colors = ['#ffd700', '#ff0000', '#00ff00', '#0000ff', '#ff00ff'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.querySelector('.confetti-container').appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        };
+
+        // Initialize effects
+        createSpotlights();
+        setInterval(createConfetti, 3000);
+
+        // Enhanced progress animation
+        const animateProgress = () => {
+            document.querySelectorAll('.progress-ring-circle').forEach(circle => {
+                const percent = circle.getAttribute('data-percent');
+                const radius = circle.getAttribute('r');
+                const circumference = 2 * Math.PI * radius;
+                
+                circle.style.strokeDasharray = circumference;
+                const offset = circumference - (percent / 100 * circumference);
+                
+                // Animate the progress with GSAP
+                gsap.to(circle, {
+                    strokeDashoffset: offset,
+                    duration: 2,
+                    ease: "power2.out"
+                });
+            });
+        };
+
+        // Trigger progress animation every 3 seconds
+        setInterval(animateProgress, 3000);
+    });
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+2025-04-26 09:17:19,026 - INFO - Users data saved successfully
+2025-04-26 09:17:19,027 - INFO - Successful login: admin
+2025-04-28 12:47:08,596 - WARNING - Failed login attempt for user: admin
+2025-04-28 12:47:20,952 - WARNING - Failed login attempt for user: admin
+2025-04-28 12:51:36,520 - WARNING - Failed login attempt for user: admin
+2025-04-28 12:53:39,275 - INFO - Users data saved successfully
+2025-04-28 12:53:39,275 - INFO - Successful login: admin
+2025-04-28 13:11:42,314 - INFO - Users data saved successfully
+2025-04-28 13:11:42,314 - INFO - Successful login: admin
+2025-04-28 14:28:53,558 - INFO - Users data saved successfully
+2025-04-28 14:28:53,559 - INFO - Successful login: admin
+2025-04-28 17:00:38,582 - INFO - Users data saved successfully
+2025-04-28 17:00:38,583 - INFO - Successful login: admin
+2025-04-28 17:01:31,769 - INFO - Users data saved successfully
+2025-04-28 17:01:31,769 - INFO - New user created: igorofyeshua
+2025-04-28 17:01:44,615 - INFO - Users data saved successfully
+2025-04-28 17:01:44,616 - INFO - Successful login: igorofyeshua
+2025-04-28 17:02:55,583 - INFO - Users data saved successfully
+2025-04-28 17:02:55,584 - INFO - Successful login: admin
+2025-04-28 18:08:14,533 - WARNING - Failed login attempt for user: admin
+2025-04-28 18:08:24,690 - INFO - Users data saved successfully
+2025-04-28 18:08:24,690 - INFO - Successful login: igorofyeshua
+2025-04-29 16:34:02,364 - WARNING - Failed login attempt for user: admin
+2025-04-29 16:34:16,555 - WARNING - Failed login attempt for user: igorofyeshua
+2025-04-29 16:34:28,140 - INFO - Users data saved successfully
+2025-04-29 16:34:28,140 - INFO - Successful login: igorofyeshua
+2025-04-29 16:34:37,204 - INFO - Users data saved successfully
+2025-04-29 16:34:37,204 - INFO - User updated: 1
+2025-04-29 16:35:36,741 - INFO - Users data saved successfully
+2025-04-29 16:35:36,741 - INFO - New user created: joao
+2025-04-29 16:35:53,457 - INFO - Users data saved successfully
+2025-04-29 16:35:53,457 - INFO - Successful login: admin
+2025-04-29 19:52:06,934 - INFO - Users data saved successfully
+2025-04-29 19:52:06,935 - INFO - User deleted: 3
+2025-04-29 19:52:33,079 - INFO - Users data saved successfully
+2025-04-29 19:52:33,079 - INFO - Successful login: admin
+2025-04-30 12:02:08,551 - WARNING - Failed login attempt for user: igorofyeshua
+2025-04-30 12:15:11,281 - WARNING - Failed login attempt for user: admin
+2025-04-30 12:15:21,194 - INFO - Users data saved successfully
+2025-04-30 12:15:21,194 - INFO - Successful login: igorofyeshua
+2025-04-30 16:44:08,773 - WARNING - Failed login attempt for user: admin
+2025-04-30 16:44:18,510 - INFO - Users data saved successfully
+2025-04-30 16:44:18,510 - INFO - Successful login: igorofyeshua
+2025-04-30 19:50:50,441 - WARNING - Failed login attempt for user: igorofyeshua
+2025-04-30 19:51:01,693 - INFO - Users data saved successfully
+2025-04-30 19:51:01,693 - INFO - Successful login: igorofyeshua
+2025-05-02 17:54:53,998 - WARNING - Failed login attempt for user: igorofyeshua
+2025-05-02 17:55:03,845 - WARNING - Failed login attempt for user: igorofyeshua
+2025-05-02 17:55:13,061 - INFO - Users data saved successfully
+2025-05-02 17:55:13,061 - INFO - Successful login: igorofyeshua
+2025-05-02 17:55:27,572 - INFO - Users data saved successfully
+2025-05-02 17:55:27,572 - INFO - User updated: 1
+2025-05-02 17:56:14,429 - INFO - Users data saved successfully
+2025-05-02 17:56:14,429 - INFO - New user created: colaborador
+2025-05-02 17:56:34,016 - INFO - Users data saved successfully
+2025-05-02 17:56:34,016 - INFO - User deleted: 3
+2025-05-02 17:56:39,261 - INFO - Users data saved successfully
+2025-05-02 17:56:39,261 - INFO - New user created: colaborador
+2025-05-02 17:57:00,231 - INFO - Users data saved successfully
+2025-05-02 17:57:00,232 - INFO - Successful login: colaborador
+2025-05-03 11:55:24,266 - INFO - Users data saved successfully
+2025-05-03 11:55:24,266 - INFO - Successful login: igorofyeshua
+2025-05-05 19:50:01,568 - INFO - Users data saved successfully
+2025-05-05 19:50:01,568 - INFO - Successful login: igorofyeshua
+2025-05-06 16:40:30,390 - INFO - Users data saved successfully
+2025-05-06 16:40:30,391 - INFO - Successful login: admin
+2025-05-06 16:40:51,082 - INFO - Users data saved successfully
+2025-05-06 16:40:51,082 - INFO - User deleted: 2
+2025-05-06 16:40:56,089 - INFO - Users data saved successfully
+2025-05-06 16:40:56,089 - INFO - User deleted: 3
+2025-05-06 16:46:59,397 - INFO - Users data saved successfully
+2025-05-06 16:46:59,397 - INFO - New user created: master
+2025-05-06 16:47:12,699 - INFO - Users data saved successfully
+2025-05-06 16:47:12,699 - INFO - Successful login: master
+2025-05-07 13:33:32,788 - WARNING - Failed login attempt for user: admin
+2025-05-07 13:33:46,824 - WARNING - Failed login attempt for user: igorofyeshua
+2025-05-07 13:34:34,858 - WARNING - Failed login attempt for user: '1<1>'000'
+2025-05-07 13:36:32,797 - INFO - Users data saved successfully
+2025-05-07 13:36:32,797 - INFO - Successful login: master
+2025-05-07 15:37:51,712 - INFO - Users data saved successfully
+2025-05-07 15:37:51,712 - INFO - Successful login: master
+2025-05-07 16:55:47,759 - INFO - Users data saved successfully
+2025-05-07 16:55:47,759 - INFO - Successful login: master
+2025-05-08 11:11:09,952 - INFO - Users data saved successfully
+2025-05-08 11:11:09,952 - INFO - Successful login: master
+2025-05-08 19:09:40,704 - INFO - Users data saved successfully
+2025-05-08 19:09:40,704 - INFO - Successful login: master
+2025-05-08 19:21:08,824 - INFO - Users data saved successfully
+2025-05-08 19:21:08,824 - INFO - Successful login: master
+2025-05-08 19:39:33,802 - INFO - Users data saved successfully
+2025-05-08 19:39:33,803 - INFO - Successful login: master
+2025-05-09 11:04:52,927 - INFO - Users data saved successfully
+2025-05-09 11:04:52,927 - INFO - Successful login: master
+2025-05-09 18:27:03,664 - WARNING - Failed login attempt for user: master
+2025-05-09 18:27:11,699 - INFO - Users data saved successfully
+2025-05-09 18:27:11,699 - INFO - Successful login: master
+2025-05-12 12:05:15,668 - INFO - Users data saved successfully
+2025-05-12 12:05:15,669 - INFO - Successful login: master
+2025-05-12 12:10:15,090 - INFO - Users data saved successfully
+2025-05-12 12:10:15,090 - INFO - Successful login: master
+2025-05-12 12:50:24,512 - WARNING - Failed login attempt for user: '1819'29*/'/%
+2025-05-12 12:50:29,120 - WARNING - Failed login attempt for user: '
+2025-05-12 12:50:32,905 - WARNING - Failed login attempt for user: '1'
+2025-05-12 12:50:50,227 - INFO - Users data saved successfully
+2025-05-12 12:50:50,227 - INFO - Successful login: master
+2025-05-12 14:16:38,750 - INFO - Users data saved successfully
+2025-05-12 14:16:38,751 - INFO - Successful login: master
+2025-05-12 14:16:51,160 - INFO - Users data saved successfully
+2025-05-12 14:16:51,160 - INFO - Successful login: master
+2025-05-12 14:24:35,852 - INFO - Users data saved successfully
+2025-05-12 14:24:35,852 - INFO - Successful login: master
+2025-05-12 15:58:53,461 - INFO - Users data saved successfully
+2025-05-12 15:58:53,462 - INFO - Successful login: master
+2025-05-12 15:59:00,784 - INFO - Users data saved successfully
+2025-05-12 15:59:00,784 - INFO - Successful login: master
+2025-05-12 15:59:22,056 - INFO - Users data saved successfully
+2025-05-12 15:59:22,056 - INFO - Successful login: master
+2025-05-12 16:00:46,901 - WARNING - Failed login attempt for user: ajaijsijaij
+2025-05-12 16:00:54,822 - WARNING - Failed login attempt for user: master
+2025-05-12 16:00:56,486 - WARNING - Failed login attempt for user: master
+2025-05-12 16:01:02,730 - WARNING - Failed login attempt for user: master
+2025-05-12 16:27:37,219 - INFO - Users data saved successfully
+2025-05-12 16:27:37,219 - INFO - Successful login: master
+2025-05-12 16:27:40,956 - INFO - Users data saved successfully
+2025-05-12 16:27:40,956 - INFO - Successful login: master
+2025-05-12 16:28:01,390 - INFO - Users data saved successfully
+2025-05-12 16:28:01,390 - INFO - Successful login: master
+2025-05-12 18:16:46,459 - INFO - Users data saved successfully
+2025-05-12 18:16:46,459 - INFO - Successful login: master
+2025-05-12 18:17:06,157 - INFO - Users data saved successfully
+2025-05-12 18:17:06,157 - INFO - Successful login: master
+2025-05-12 19:55:54,779 - INFO - Users data saved successfully
+2025-05-12 19:55:54,779 - INFO - Successful login: master
+2025-05-13 14:29:58,410 - INFO - Users data saved successfully
+2025-05-13 14:29:58,411 - INFO - Successful login: master
+2025-05-14 15:47:58,063 - WARNING - Failed login attempt for user: master
+2025-05-14 15:48:05,147 - INFO - Users data saved successfully
+2025-05-14 15:48:05,147 - INFO - Successful login: master
+2025-05-14 17:07:21,693 - INFO - Users data saved successfully
+2025-05-14 17:07:21,693 - INFO - Successful login: master
+2025-05-14 18:04:12,810 - INFO - Users data saved successfully
+2025-05-14 18:04:12,811 - INFO - Successful login: master
+2025-05-14 18:04:15,462 - INFO - Users data saved successfully
+2025-05-14 18:04:15,462 - INFO - Successful login: master
+2025-05-14 18:25:59,123 - INFO - Users data saved successfully
+2025-05-14 18:25:59,123 - INFO - Successful login: master
+2025-05-14 18:32:10,428 - INFO - Users data saved successfully
+2025-05-14 18:32:10,428 - INFO - Successful login: master
+2025-05-14 18:54:33,055 - INFO - Users data saved successfully
+2025-05-14 18:54:33,055 - INFO - Successful login: master

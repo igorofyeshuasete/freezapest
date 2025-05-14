@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financeiro - Análise de Demandas</title>
+    
+    <!-- CSS Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #3a0ca3;
+            --secondary: #4361ee;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --danger: #ff0a54;
+            --light: #f8f9fa;
+            --dark: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .priority-table {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .priority-high { background: var(--warning); color: white; }
+        .priority-medium { background: var(--success); color: white; }
+        .priority-low { background: var(--secondary); color: white; }
+
+        .bg-gradient-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        .bg-gradient-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #f72585 100%);
+        }
+
+        .top-critical li {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .table-dark {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .table-dark td, .table-dark th {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <div class="container">
+            <h1 class="display-5 mb-0">Dashboard Financeiro</h1>
+            <p class="lead mb-0">Análise de Demandas e Conversões</p>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <!-- KPI Section -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <h6 class="text-muted mb-2">PRAZO B Médio</h6>
+                    <div class="metric-value">6.78</div>
+                    <p class="mb-0 text-muted">Dias (Max: 24 dias)</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <h6 class="text-muted mb-2">PRAZO 7 Médio</h6>
+                    <div class="metric-value">11.01</div>
+                    <p class="mb-0 text-muted">Dias (Max: 68 dias)</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <h6 class="text-muted mb-2">Correlação</h6>
+                    <div class="metric-value">63.8%</div>
+                    <p class="mb-0 text-muted">PRAZO B × PRAZO 7</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <h6 class="text-muted mb-2">Casos Urgentes</h6>
+                    <div class="metric-value">253</div>
+                    <p class="mb-0 text-muted">De 600 casos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <h5 class="mb-4">Distribuição de Prioridades</h5>
+                    <canvas id="priorityChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <h5 class="mb-4">Funil de Conversão</h5>
+                    <canvas id="funnelChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Priority Cases Table -->
+        <div class="priority-table">
+            <h5 class="mb-4">Top 5 Casos Prioritários</h5>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Contrato</th>
+                            <th>Banco</th>
+                            <th>PRAZO B</th>
+                            <th>Dias em Processo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>235103</td>
+                            <td>PANAMERICANO</td>
+                            <td><span class="status-badge priority-high">4 dias</span></td>
+                            <td>130</td>
+                        </tr>
+                        <tr>
+                            <td>234236</td>
+                            <td>PANAMERICANO</td>
+                            <td><span class="status-badge priority-high">4 dias</span></td>
+                            <td>135</td>
+                        </tr>
+                        <tr>
+                            <td>239715</td>
+                            <td>SANTANDER</td>
+                            <td><span class="status-badge priority-medium">2 dias</span></td>
+                            <td>74</td>
+                        </tr>
+                        <tr>
+                            <td>236150</td>
+                            <td>BRADESCO</td>
+                            <td><span class="status-badge priority-medium">3 dias</span></td>
+                            <td>105</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Guidelines Section -->
+        <div class="guidelines-section mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Guia Estratégico de Gestão</h4>
+                    
+                    <!-- Tabs Navigation -->
+                    <ul class="nav nav-pills mb-4" id="guidelinesTabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#analise">Análise</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#recomendacoes">Recomendações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#kpis">KPIs</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tabs Content -->
+                    <div class="tab-content">
+                        <!-- Análise Tab -->
+                        <div class="tab-pane fade show active" id="analise">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h5>Análise de Correlação</h5>
+                                            <div class="progress mb-3" style="height: 20px;">
+                                                <div class="progress-bar bg-info" style="width: 64%">
+                                                    Correlação: 64%
+                                                </div>
+                                            </div>
+                                            <ul class="list-unstyled">
+                                                <li><i class="bx bx-check text-success"></i> Relação moderada entre prazos</li>
+                                                <li><i class="bx bx-check text-success"></i> Maior PRAZO 7 → Maior PRAZO B</li>
+                                                <li><i class="bx bx-alert text-warning"></i> Casos críticos: PRAZO 7 alto + PRAZO B baixo</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h5>Distribuição de Status</h5>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span>PENDENTE (452)</span>
+                                                <strong>75.3%</strong>
+                                            </div>
+                                            <div class="progress mb-2" style="height: 15px;">
+                                                <div class="progress-bar bg-primary" style="width: 75.3%"></div>
+                                            </div>
+                                            <div class="small text-muted">
+                                                Tempo médio: 257.87 dias
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recomendações Tab -->
+                        <div class="tab-pane fade" id="recomendacoes">
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="card border-danger h-100">
+                                        <div class="card-header bg-danger text-white">
+                                            <i class="bx bx-alarm"></i> Ações Imediatas (24h)
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-warning">
+                                                <strong>66 casos VENCIDOS</strong>
+                                                <p class="small mb-0">Requerem ação imediata</p>
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <span>PANAMERICANO</span>
+                                                        <span class="badge bg-danger">4 casos</span>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <span>SANTANDER</span>
+                                                        <span class="badge bg-danger">2 casos</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div class="mt-3">
+                                                <h6>Ações Prioritárias:</h6>
+                                                <ol class="small">
+                                                    <li>Contato imediato com devedores</li>
+                                                    <li>Renegociação de prazos</li>
+                                                    <li>Escalação para gestores</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="card border-warning h-100">
+                                        <div class="card-header bg-warning text-white">
+                                            <i class="bx bx-target-lock"></i> Metas 30 Dias
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="goal-item mb-4">
+                                                <h6>Meta 1: Aumentar Análise (300%)</h6>
+                                                <div class="progress mb-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" style="width: 33%"></div>
+                                                </div>
+                                                <small class="text-muted">Atual: 12 casos/dia → Meta: 36 casos/dia</small>
+                                            </div>
+                                            <div class="goal-item mb-4">
+                                                <h6>Meta 2: Reduzir PRAZO B (5 dias)</h6>
+                                                <div class="progress mb-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                                </div>
+                                                <small class="text-muted">Atual: 6.67 dias → Meta: 5 dias</small>
+                                            </div>
+                                            <div class="goal-item">
+                                                <h6>Meta 3: Aumentar Conversão</h6>
+                                                <div class="progress mb-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" style="width: 27%"></div>
+                                                </div>
+                                                <small class="text-muted">Atual: 2.7% → Meta: 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="card border-info h-100">
+                                        <div class="card-header bg-info text-white">
+                                            <i class="bx bx-line-chart"></i> Estratégia Q2-Q3 2025
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="timeline">
+                                                <div class="timeline-item mb-4">
+                                                    <div class="d-flex align-items-center mb-1">
+                                                        <span class="badge bg-info me-2">Q2</span>
+                                                        <h6 class="mb-0">Automação de Triagem</h6>
+                                                    </div>
+                                                    <p class="small mb-0">Reduzir tempo inicial em 70%</p>
+                                                    <div class="progress mt-2" style="height: 4px;">
+                                                        <div class="progress-bar bg-info" style="width: 25%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="timeline-item">
+                                                    <div class="d-flex align-items-center mb-1">
+                                                        <span class="badge bg-info me-2">Q3</span>
+                                                        <h6 class="mb-0">Sistema Preventivo</h6>
+                                                    </div>
+                                                    <p class="small mb-0">Alertas 15 dias antes do vencimento</p>
+                                                    <div class="progress mt-2" style="height: 4px;">
+                                                        <div class="progress-bar bg-info" style="width: 15%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KPIs Tab -->
+                        <div class="tab-pane fade" id="kpis">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="card h-100">
+                                        <div class="card-header bg-light">
+                                            <h5 class="card-title mb-0">Métricas Críticas</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="kpi-item mb-4">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span>Conversão PENDENTE → ANÁLISE</span>
+                                                    <span class="badge bg-danger">2.7%</span>
+                                                </div>
+                                                <div class="progress" style="height: 8px;">
+                                                    <div class="progress-bar bg-danger" style="width: 27%"></div>
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-1">
+                                                    <small class="text-muted">Meta: >10%</small>
+                                                    <small class="text-danger">Gap: 7.3%</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="kpi-item mb-4">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span>Tempo Médio de Resolução</span>
+                                                    <span class="badge bg-warning">226.4 dias</span>
+                                                </div>
+                                                <div class="progress" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" style="width: 60%"></div>
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-1">
+                                                    <small class="text-muted">Meta: <200 dias</small>
+                                                    <small class="text-warning">Gap: 26.4 dias</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="kpi-item mb-4">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span>Taxa de Quitação</span>
+                                                    <span class="badge bg-danger">0%</span>
+                                                </div>
+                                                <div class="progress" style="height: 8px;">
+                                                    <div class="progress-bar bg-danger" style="width: 0%"></div>
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-1">
+                                                    <small class="text-muted">Meta: >50%</small>
+                                                    <small class="text-danger">Gap: 50%</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card h-100">
+                                        <div class="card-header bg-light">
+                                            <h5 class="card-title mb-0">Indicadores por Banco</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Banco</th>
+                                                            <th>Casos</th>
+                                                            <th>Prazo Médio</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>PANAMERICANO</td>
+                                                            <td>4</td>
+                                                            <td>132.5 dias</td>
+                                                            <td><span class="badge bg-danger">Crítico</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>SANTANDER</td>
+                                                            <td>2</td>
+                                                            <td>74 dias</td>
+                                                            <td><span class="badge bg-warning">Atenção</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>BRADESCO</td>
+                                                            <td>1</td>
+                                                            <td>105 dias</td>
+                                                            <td><span class="badge bg-info">Regular</span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this section after the Guidelines Section -->
+        <div class="ml-insights mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">
+                        <i class="bx bx-brain"></i> Análise Preditiva (XGBoost)
+                    </h4>
+                    
+                    <div class="row g-4">
+                        <!-- Probabilidade de Quitação -->
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-dark text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="bx bx-line-chart"></i> Probabilidade de Quitação
+                                    </h5>
+                                    <div class="insights-container">
+                                        <div class="feature-importance mb-4">
+                                            <h6>Principais Indicadores (Feature Importance)</h6>
+                                            <div class="progress mb-2" style="height: 15px;">
+                                                <div class="progress-bar bg-success" style="width: 85%">
+                                                    Tempo em Análise (85%)
+                                                </div>
+                                            </div>
+                                            <div class="progress mb-2" style="height: 15px;">
+                                                <div class="progress-bar bg-info" style="width: 72%">
+                                                    Valor da Dívida (72%)
+                                                </div>
+                                            </div>
+                                            <div class="progress mb-2" style="height: 15px;">
+                                                <div class="progress-bar bg-warning" style="width: 65%">
+                                                    Histórico de Negociações (65%)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clusters de Clientes -->
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-primary text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="bx bx-group"></i> Segmentação de Clientes
+                                    </h5>
+                                    <div class="cluster-analysis">
+                                        <div class="cluster mb-3">
+                                            <h6>Cluster 1: Alta Probabilidade (32%)</h6>
+                                            <ul class="list-unstyled small">
+                                                <li>• Dívida < R$ 50.000</li>
+                                                <li>• Tempo em análise < 90 dias</li>
+                                                <li>• Histórico positivo de negociação</li>
+                                            </ul>
+                                        </div>
+                                        <div class="cluster mb-3">
+                                            <h6>Cluster 2: Média Probabilidade (45%)</h6>
+                                            <ul class="list-unstyled small">
+                                                <li>• Dívida entre R$ 50.000 e R$ 150.000</li>
+                                                <li>• Tempo em análise entre 90 e 180 dias</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Previsões e Recomendações -->
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">Insights Preditivos</h5>
+                                    <div class="row g-4">
+                                        <div class="col-md-4">
+                                            <div class="alert alert-info">
+                                                <h6>Previsão de Quitações (Próximos 30 dias)</h6>
+                                                <p class="mb-0">Expectativa de 15 novos casos quitados</p>
+                                                <small>Confiança: 87%</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="alert alert-warning">
+                                                <h6>Casos em Risco</h6>
+                                                <p class="mb-0">28 casos com alta probabilidade de cancelamento</p>
+                                                <small>Necessidade de intervenção imediata</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="alert alert-success">
+                                                <h6>Oportunidades Identificadas</h6>
+                                                <p class="mb-0">42 casos com perfil ideal para negociação</p>
+                                                <small>Base: histórico de casos similares</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this new section for CTT Analysis -->
+        <div class="ctt-insights mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">
+                        <i class="bx bx-analyse"></i> Análise Detalhada por CTT
+                    </h4>
+                    
+                    <div class="row g-4">
+                        <!-- Previsão por CTT -->
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-success text-white">
+                                <div class="card-body">
+                                    <h5>CTTs com Alta Probabilidade de Quitação</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>CTT</th>
+                                                    <th>Prob. Quitação</th>
+                                                    <th>Dias Restantes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>235103</td>
+                                                    <td>92%</td>
+                                                    <td>15</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>234236</td>
+                                                    <td>88%</td>
+                                                    <td>22</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>239715</td>
+                                                    <td>85%</td>
+                                                    <td>28</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTTs em Risco -->
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-danger text-white">
+                                <div class="card-body">
+                                    <h5>CTTs em Risco de Cancelamento</h5>
+                                    <div class="alert alert-warning border-0">
+                                        <strong>28 CTTs Críticos</strong>
+                                        <p class="mb-0">Necessitam intervenção em 24h</p>
+                                    </div>
+                                    <div class="top-critical mt-3">
+                                        <h6>Top 5 Críticos:</h6>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span>CTT 236150</span>
+                                                    <span class="badge bg-danger">Risco: 89%</span>
+                                                </div>
+                                                <div class="progress mt-1" style="height: 5px;">
+                                                    <div class="progress-bar bg-danger" style="width: 89%"></div>
+                                                </div>
+                                            </li>
+                                            <!-- Add more critical CTTs here -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Priority Distribution Chart
+        new Chart(document.getElementById('priorityChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['URGENTE', 'ALTA', 'MÉDIA', 'NORMAL', 'VENCIDO'],
+                datasets: [{
+                    data: [253, 139, 93, 62, 53],
+                    backgroundColor: [
+                        '#f72585',
+                        '#4361ee',
+                        '#4cc9f0',
+                        '#3a0ca3',
+                        '#ff0a54'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Conversion Funnel Chart
+        new Chart(document.getElementById('funnelChart'), {
+            type: 'bar',
+            data: {
+                labels: ['PENDENTE', 'ANÁLISE', 'APROVADO', 'VERIFICADO', 'CANCELADO'],
+                datasets: [{
+                    label: 'Quantidade de Casos',
+                    data: [450, 12, 5, 109, 13],
+                    backgroundColor: '#4361ee'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // KPI Chart
+        new Chart(document.getElementById('kpiChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Conversão', 'Tempo', 'Vencidos', 'Quitação'],
+                datasets: [{
+                    label: 'Atual',
+                    data: [2.7, 226.4, 66, 0],
+                    backgroundColor: '#4361ee'
+                }, {
+                    label: 'Meta',
+                    data: [10, 200, 0, 50],
+                    backgroundColor: '#4cc9f0'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

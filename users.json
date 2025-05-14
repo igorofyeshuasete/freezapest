@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "password": "YWRtaW4xMjM=",
+        "name": "Administrador",
+        "role": "admin"
+    },
+    {
+        "id": 2,
+        "username": "igor",
+        "password": "aWdvcjEyMw==",
+        "name": "Igor de Jesus",
+        "role": "admin"
+    }
+]

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUITADOS Dashboard - 01/04/2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --success-color: #27ae60;
+            --info-color: #3498db;
+            --warning-color: #f1c40f;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 20px;
+            border: none;
+        }
+        
+        .metric-value {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .badge-custom {
+            font-size: 0.9rem;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: 500;
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .list-group-item {
+            border: none;
+            padding: 15px 20px;
+            margin: 5px 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        canvas {
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        .icon-stat {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: -webkit-linear-gradient(45deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .trend-up {
+            color: #27ae60;
+            font-size: 0.9rem;
+        }
+        
+        .trend-down {
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+        
+        .card-stat {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+        
+        .table-responsive {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(145deg, #1a1a1a, #2c2c2c);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .company-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            margin-right: 2rem;
+        }
+        
+        .company-logo-svg {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+            transition: all 0.3s ease;
+        }
+        
+        .company-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .company-name {
+            color: #FFD700;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        
+        .company-subtitle {
+            color: #FFD700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+        
+        .company-logo-svg:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        
+        .dashboard-title {
+            color: #FFD700; /* Dourado para combinar com a logo */
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+        
+        .dashboard-subtitle {
+            color: #ffffff;
+            opacity: 0.8;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .header-icon {
+            color: #FFD700;
+            font-size: 1.8rem;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        .performance-table {
+            font-size: 0.75rem !important;
+        }
+        
+        .performance-table th,
+        .performance-table td {
+            padding: 0.3rem !important;
+            white-space: nowrap;
+            vertical-align: middle !important;
+        }
+        
+        .performance-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.4rem;
+        }
+        
+        .performance-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Adicione estilo para linhas alternadas */
+        .performance-table tbody tr:nth-child(odd) {
+            background-color: rgba(0,0,0,0.02);
+        }
+        
+        /* Hover mais suave */
+        .performance-table tbody tr:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        .performance-table tr td:first-child {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .performance-badge {
+            min-width: 80px;
+        }
+        
+        .metric-card .border-start {
+            border-left: 1px solid #dee2e6!important;
+        }
+        
+        .text-warning {
+            color: #ffc107!important;
+        }
+        
+        .bg-warning {
+            background-color: #ffc107!important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <div class="dashboard-header">
+            <div class="d-flex align-items-center">
+                <div class="company-logo-container">
+                    <svg class="company-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Fundo quadrado arredondado -->
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="dropShadow">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+                                <feOffset dx="0" dy="2" result="offsetblur"/>
+                                <feComponentTransfer>
+                                    <feFuncA type="linear" slope="0.2"/>
+                                </feComponentTransfer>
+                                <feMerge> 
+                                    <feMergeNode/>
+                                    <feMergeNode in="SourceGraphic"/> 
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        
+                              
+                        
+                    </svg>
+                    
+                    <!-- Adicione o texto "SETE CAPITAL" abaixo do logo -->
+                    <div class="company-text">
+                        <div class="company-name">SETE CAPITAL</div>
+                        <div class="company-subtitle">ASSESSORIA</div>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="dashboard-title">
+                        <i class='bx bxs-handshake header-icon'></i>
+                        Dashboard SETOR ACORDO
+                    </h1>
+                    <p class="dashboard-subtitle">
+                        <i class='bx bxs-calendar-check header-icon' style="font-size: 1.2rem;"></i>
+                        Relatório de Quitações - 01/04/2025
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. SEÇÃO QUITADOS -->
+        <!-- Divisor visual para início da seção QUITADOS -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h3 class="text-primary text-center">
+                    <i class='bx bxs-check-circle'></i> ANÁLISE DE QUITADOS
+                </h3>
+                <hr class="border-primary">
+            </div>
+        </div>
+
+        <!-- 2.1 Cards Principais de QUITADOS -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Total QUITADOS</h6>
+                        <div class="metric-value">23</div>
+                        <div class="metric-label">Quitados</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Hoje (01/04)</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="metric-value">23</div>
+                                <div class="metric-label">Quitados</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Média Diária</h6>
+                        <div class="metric-value">24.8</div>
+                                <div class="metric-label">Quitados</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2.2 Análise de Performance Diária -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-white">
+                <h6 class="mb-0">Top 5 Bancos - Aprovados</h6>
+            </div>
+            <div class="list-group list-group-flush">
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    1. PANAMERICANO
+                    <span class="badge bg-warning">850</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    2. SANTANDER
+                    <span class="badge bg-warning">304</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    3. BV FINANCEIRA
+                    <span class="badge bg-warning">213</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    4. ITAÚ
+                    <span class="badge bg-warning">124</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    5. BRADESCO
+                    <span class="badge bg-warning">67</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2.3 Top 10 Colaboradores QUITADOS -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class='bx bxs-medal'></i> Top 10 Colaboradores
+                        </h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            1. FELIPE
+                            <span class="badge bg-primary badge-custom">4</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            2. AMANDA SANTANA
+                            <span class="badge bg-primary badge-custom">2</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            3. THALISSON
+                            <span class="badge bg-primary badge-custom">2</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            4. ELISANGELA
+                            <span class="badge bg-primary badge-custom">2</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            5. ANA GESSICA
+                            <span class="badge bg-primary badge-custom">2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class='bx bxs-calendar'></i> Evolução Diária
+                        </h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            03/03/2025
+                            <span class="badge bg-primary badge-custom">4 (1.8%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            05/03/2025
+                            <span class="badge bg-primary badge-custom">22 (9.9%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            06/03/2025
+                            <span class="badge bg-primary badge-custom">24 (10.8%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            07/03/2025
+                            <span class="badge bg-primary badge-custom">27 (12.2%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            10/03/2025
+                            <span class="badge bg-primary badge-custom">28 (12.6%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            11/03/2025
+                            <span class="badge bg-primary badge-custom">41 (18.5%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            12/03/2025
+                            <span class="badge bg-primary badge-custom">19 (8.6%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            13/03/2025
+                            <span class="badge bg-primary badge-custom">28 (12.6%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            14/03/2025
+                            <span class="badge bg-primary badge-custom">29 (13.1%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            15/03/2025
+                            <span class="badge bg-primary badge-custom">2 (0.8%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            17/03/2025
+                            <span class="badge bg-primary badge-custom">42 (15.8%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            18/03/2025
+                            <span class="badge bg-primary badge-custom">26 (8.9%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            19/03/2025
+                            <span class="badge bg-primary badge-custom">28 (8.75%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            21/03/2025
+                            <span class="badge bg-primary badge-custom">18 (4.9%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            24/03/2025
+                            <span class="badge bg-primary badge-custom">34 (8.5%)</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            25/03/2025
+                            <span class="badge bg-primary badge-custom">31 (7.2%)</span>
+                        </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                            26/03/2025
+                            <span class="badge bg-primary badge-custom">14 (3.1%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2.6 Gráfico de Performance QUITADOS -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">
+                                <i class='bx bxs-bar-chart-alt-2'></i> Performance por Colaborador
+                            </h5>
+                            <div class="btn-group">
+                                <button class="btn btn-light btn-sm">Dia</button>
+                                <button class="btn btn-light btn-sm active">Mês</button>
+                                <button class="btn btn-light btn-sm">Ano</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="quitadosChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SEÇÃO APROVADOS -->
+        <!-- Divisor visual para início da seção APROVADOS -->
+        <div class="row my-5">
+            <div class="col-12">
+                <h3 class="text-warning text-center">
+                    <i class='bx bxs-check-square'></i> ANÁLISE DE APROVADOS
+                </h3>
+                <hr class="border-warning">
+            </div>
+        </div>
+
+        <!-- 3.1 Cards Principais APROVADOS -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-warning">Total APROVADOS</h6>
+                        <div class="metric-value text-warning">1862</div>
+                        <div class="metric-label text-warning">Aprovados</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-warning">Hoje (26/03)</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="metric-value">90</div>
+                                <div class="metric-label">Aprovados</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-warning">Média Diária</h6>
+                        <div class="metric-value">93.1</div>
+                        <div class="metric-label">Aprovados</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3.2 Top 5 Bancos APROVADOS -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-white">
+                <h6 class="mb-0">Top 5 Bancos - Aprovados</h6>
+            </div>
+            <div class="list-group list-group-flush">
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    1. PANAMERICANO
+                    <span class="badge bg-warning">850</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    2. SANTANDER
+                    <span class="badge bg-warning">304</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    3. BV FINANCEIRA
+                    <span class="badge bg-warning">213</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    4. ITAÚ
+                    <span class="badge bg-warning">124</span>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    5. BRADESCO
+                    <span class="badge bg-warning">67</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3.3 Análise de APROVADOS -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class='bx bxs-check-square header-icon'></i> Análise de APROVADOS
+                    </h5>
+                    <span class="badge bg-info badge-custom">Total: 1862 Aprovações</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle performance-table">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Responsável</th>
+                                <th class="text-center">Total Aprovados</th>
+                                <th class="text-center">% do Total</th>
+                                <th class="text-end">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1º</td>
+                                <td><span class="performance-name">FELIPE</span></td>
+                                <td class="text-center">4</td>
+                                <td class="text-center">17.4%</td>
+                                <td class="text-end"><span class="badge bg-success performance-badge">Top Performer</span></td>
+                            </tr>
+                            <tr>
+                                <td>2º</td>
+                                <td><span class="performance-name">AMANDA SANTANA</span></td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">8.7%</td>
+                                <td class="text-end"><span class="badge bg-success performance-badge">Bom</span></td>
+                            </tr>
+                            <tr>
+                                <td>2º</td>
+                                <td><span class="performance-name">THALISSON</span></td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">8.7%</td>
+                                <td class="text-end"><span class="badge bg-success performance-badge">Bom</span></td>
+                            </tr>
+                            <!-- Add remaining rows similarly -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Atualize o gráfico com os novos dados -->
+                <div class="chart-container mt-4">
+                    <canvas id="approvedChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3.4 Gráfico de APROVADOS -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class='bx bxs-bar-chart-alt-2'></i> Performance por Colaborador
+                    </h5>
+                    <div class="btn-group">
+                        <button class="btn btn-light btn-sm">Dia</button>
+                        <button class="btn btn-light btn-sm active">Mês</button>
+                        <button class="btn btn-light btn-sm">Ano</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="quitadosChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Gráfico de Performance QUITADOS
+        const ctxQuitados = document.getElementById('quitadosChart').getContext('2d');
+        const gradientQuitados = ctxQuitados.createLinearGradient(0, 0, 0, 400);
+        gradientQuitados.addColorStop(0, 'rgba(52, 152, 219, 0.9)');
+        gradientQuitados.addColorStop(1, 'rgba(41, 128, 185, 0.6)');
+
+        const quitadosData = {
+            labels: ['FELIPE', 'AMANDA SANTANA', 'THALISSON', 'ELISANGELA', 'ANA GESSICA', 
+                    'JULIANA', 'LUARA', 'FABIANA', 'KATIA', 'JULIANE'],
+            datasets: [{
+                label: 'Quitações Realizadas',
+                data: [4, 2, 2, 2, 2, 2, 1, 1, 1, 1],
+                backgroundColor: gradientQuitados,
+                borderColor: '#2980b9',
+                borderWidth: 2,
+                borderRadius: 8,
+                barThickness: 25
+            }]
+        };
+
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Desempenho dos Colaboradores - Abril 2025',
+                    font: {
+                        size: 18,
+                        weight: 'bold',
+                        family: "'Segoe UI', sans-serif"
+                    },
+                    padding: 20,
+                    color: '#2c3e50'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 11
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(ctxQuitados, {
+            type: 'bar',
+            data: quitadosData,
+            options: chartOptions
+        });
+
+        // Gráfico de Performance APROVADOS
+        const ctxApproved = document.getElementById('approvedChart').getContext('2d');
+        const gradientApproved = ctxApproved.createLinearGradient(0, 0, 0, 400);
+        gradientApproved.addColorStop(0, 'rgba(255, 193, 7, 0.9)');
+        gradientApproved.addColorStop(1, 'rgba(255, 193, 7, 0.6)');
+
+        new Chart(ctxApproved, {
+            type: 'bar',
+            data: {
+                labels: ['AMANDA SANTANA', 'FABIANA', 'FELIPE', 'NUNO', 'POLIANA', 
+                        'ANA LIDIA', 'MATHEUS', 'ANA GESSICA', 'ELISANGELA', 'THALISSON'],
+                datasets: [{
+                    label: 'Total de Aprovações',
+                    data: [143, 143, 138, 133, 122, 117, 104, 97, 89, 84],
+                    backgroundColor: gradientApproved,
+                    borderColor: '#ffc107',
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    barThickness: 25
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Top 10 Colaboradores - Total de Aprovações',
+                        font: {
+                            size: 18,
+                            weight: 'bold',
+                            family: "'Segoe UI', sans-serif"
+                        },
+                        padding: 20,
+                        color: '#2c3e50'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

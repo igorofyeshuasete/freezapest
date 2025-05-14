@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de Segurança Cibernética - Igor de Jesus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos personalizados */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            /* Cor de fundo para a base do Neumorfismo */
+            background-color: #f0f2f5;
+            color: #333; /* Cor do texto principal */
+        }
+        .header {
+            background-color: #212529; /* Tema escuro para o cabeçalho */
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .section {
+            padding: 40px 0;
+        }
+        .section h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5rem; /* Aumenta o tamanho da fonte para destaque */
+            font-weight: bold;
+            text-transform: uppercase; /* Transforma em maiúsculas */
+            /* Estilo de gradiente suave para o título da seção */
+            background: linear-gradient(to right, #007bff, #0056b3); /* Gradiente azul */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: none; /* Remove bordas para o estilo neumórfico */
+            border-radius: 15px; /* Cantos mais arredondados */
+            /* Sombras para o efeito neumórfico "elevado" */
+            box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.1),
+                        -7px -7px 15px rgba(255, 255, 255, 0.7);
+            height: 100%; /* Garante que os cards tenham a mesma altura */
+            background-color: #f0f2f5; /* Fundo do card igual ao body para Neumorfismo */
+            display: flex; /* Usa flexbox para o card */
+            flex-direction: column; /* Organiza o conteúdo em coluna */
+        }
+         .card-body {
+             flex-grow: 1; /* Permite que o corpo do card ocupe o espaço restante */
+             display: flex;
+             flex-direction: column;
+         }
+        .card-title {
+            color: #007bff; /* Cor primária para o título do card */
+            font-size: 1.25rem; /* Tamanho do título do card */
+            margin-bottom: 15px;
+            display: flex; /* Usa flexbox para alinhar ícone e título */
+            align-items: center; /* Centraliza verticalmente */
+        }
+        .card-title i {
+            margin-right: 10px; /* Espaço entre ícone e título */
+            font-size: 1.5rem; /* Tamanho do ícone do título */
+            color: #212529; /* Cor escura para o ícone */
+        }
+
+         .card-text {
+             flex-grow: 1; /* Permite que o texto ocupe o espaço restante */
+             margin-bottom: 15px;
+         }
+         .card-text strong {
+             color: #212529; /* Cor escura para os títulos dentro da descrição */
+         }
+
+        .card-img-top {
+            height: 180px; /* Altura fixa para as imagens ilustrativas */
+            object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+            border-top-left-radius: 15px; /* Arredonda apenas os cantos superiores */
+            border-top-right-radius: 15px;
+        }
+        .footer {
+            background-color: #212529; /* Tema escuro para o rodapé */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none; /* Remove sublinhado */
+        }
+        /* Estilos para os itens das listas em geral (Habilidades Técnicas, Pessoais, Educação, Experiência, Interesses) */
+        .list-unstyled .list-item { /* Classe genérica para itens de lista com estilo */
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px; /* Espaço entre os itens */
+            padding: 15px 20px; /* Aumenta o padding interno */
+            border-radius: 10px; /* Cantos arredondados para o item */
+            /* Sombras para o efeito neumórfico "elevado" */
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08),
+                        -5px -5px 10px rgba(255, 255, 255, 0.6);
+            background-color: #f0f2f5; /* Fundo do item igual ao body */
+            transition: all 0.3s ease; /* Transição suave para efeitos de hover/active */
+            cursor: pointer; /* Indica que é interativo */
+        }
+        .list-unstyled .list-item:hover { /* Aplica hover */
+             /* Sombras para o efeito neumórfico "pressionado" no hover */
+            box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.08),
+                        inset -3px -3px 7px rgba(255, 255, 255, 0.6);
+        }
+         .list-unstyled .list-item:active { /* Aplica active */
+             /* Sombras para o efeito neumórfico "pressionado" no click */
+            box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.1),
+                        inset -3px -3px 7px rgba(255, 255, 255, 0.7);
+        }
+
+        .list-unstyled .list-item i { /* Estilos de ícone genéricos */
+            margin-right: 20px; /* Espaço entre ícone e texto */
+            color: #0056b3; /* Cor primária mais escura para os ícones */
+            font-size: 1.6rem; /* Aumenta tamanho do ícone */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15); /* Sombra sutil aprimorada */
+            flex-shrink: 0; /* Impede que o ícone diminua */
+        }
+
+        .list-unstyled .list-item .item-name { /* Estilos de nome genéricos */
+            font-weight: bold;
+            margin-right: 10px; /* Espaço entre nome e lista de itens */
+            color: #212529; /* Cor mais escura para o nome */
+        }
+
+         .list-unstyled .list-item .item-details { /* Estilos de detalhes genéricos */
+             flex-grow: 1; /* Permite que os detalhes ocupem o espaço restante */
+             color: #555; /* Cor do texto dos detalhes */
+         }
+
+
+        /* Estilos para as listas de Educação */
+        #educacao .list-group-item {
+            background-color: transparent; /* Remove fundo padrão do Bootstrap */
+            border: none; /* Remove borda padrão do Bootstrap */
+            padding: 10px 0; /* Ajusta padding */
+            border-bottom: 1px solid #e9ecef; /* Adiciona uma linha sutil entre os itens */
+            font-size: 1.1rem; /* Aumenta o tamanho da fonte */
+            color: #495057; /* Cor de texto um pouco mais escura */
+        }
+
+        #educacao .list-group-item:last-child {
+            border-bottom: none; /* Remove a borda do último item */
+        }
+
+        #educacao .list-group-item strong {
+            color: #212529; /* Cor mais escura para os títulos dos itens */
+        }
+
+        #educacao .list-group-item small {
+            color: #6c757d; /* Cor mais clara para detalhes como datas */
+        }
+
+
+        /* Estilos para a introdução da Experiência Profissional (Novo Bloco Neumorfismo) */
+        .experience-intro-block {
+            margin-bottom: 20px; /* Espaço abaixo do bloco */
+            padding: 20px; /* Padding interno */
+            border-radius: 10px; /* Cantos arredondados */
+            /* Sombras para o efeito neumórfico "elevado" */
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08),
+                        -5px -5px 10px rgba(255, 255, 255, 0.6);
+            background-color: #f0f2f5; /* Fundo igual ao body */
+            font-size: 1.1rem; /* Tamanho da fonte */
+            color: #333; /* Cor do texto */
+            text-align: center; /* Centraliza o texto */
+            opacity: 0; /* Começa invisível para a animação */
+            animation: slideInUp 1s ease-out forwards; /* Animação de entrada */
+        }
+
+        /* Estilo específico para o parágrafo dentro do bloco de introdução da experiência */
+        .experience-intro-block p {
+            margin-bottom: 0; /* Remove margem inferior padrão do parágrafo */
+            font-size: 1.1rem; /* Garante o tamanho da fonte */
+            color: #333; /* Garante a cor do texto */
+            line-height: 1.8; /* Aumenta o espaçamento entre linhas para melhor legibilidade */
+            font-weight: normal; /* Garante que o texto não seja negrito a menos que especificado */
+        }
+
+        /* Animação de Slide In Up */
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Estilos para os itens da lista de Experiência Profissional (Removido estilo terminal) */
+        .experience-list { /* Mantém esta classe para aplicar o estilo de blocos */
+            list-style: none; /* Remove os marcadores de lista padrão */
+            padding: 0; /* Remove padding padrão */
+            margin-top: 20px; /* Espaço acima da lista (ajustado) */
+            /* Removido border-bottom-left/right-radius e background-color */
+            /* background-color: #343a40; */
+            /* padding-bottom: 10px; */
+        }
+
+        /* Removido estilos específicos do item terminal */
+        /* .experience-item { ... } */
+        /* .experience-item i { ... } */
+        /* .experience-item strong { ... } */
+
+
+        /* Estilo para a mensagem bíblica */
+        .biblical-message {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #28a745; /* Cor verde para destaque */
+            font-weight: bold;
+            opacity: 0; /* Começa invisível para a animação */
+            animation: fadeIn 2s ease-in-out forwards; /* Aplica a animação */
+        }
+
+        /* Animação de Fade In */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+
+        /* Estilo para o copyright */
+        .footer p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: #adb5bd; /* Cor mais clara para o texto do rodapé */
+        }
+
+         .footer p strong {
+             color: white; /* Destaca o texto do copyright em branco */
+         }
+
+        /* Estilo para a imagem na seção Sobre Mim */
+        .about-image {
+            display: block; /* Garante que a imagem seja um bloco para centralizar */
+            margin: 20px auto; /* Centraliza a imagem e adiciona margem */
+            max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+            height: auto; /* Mantém a proporção da imagem */
+            border-radius: 10px; /* Cantos arredondados */
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1>Igor de Jesus</h1>
+            <p class="lead">Profissional de TI em Transição para Segurança Cibernética</p>
+        </div>
+    </header>
+
+    <section id="sobre-mim" class="section">
+        <div class="container">
+            <h2>Sobre Mim</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <p>Durante 5 anos, atuei como técnico em computadores e smartphones (hardware e software), gerenciando meu próprio negócio de TI. Essa jornada solo, focada em manutenção e resolução de problemas, me proporcionou uma base técnica sólida e a capacidade de transformar desafios em soluções robustas.</p>
+
+    
+
+                    <h5 class="mt-1">Atualmente, estou concluindo a Certificação Profissional em Segurança Cibernética da Google, onde desenvolvi habilidades em:</h3>
+                    <ul class="list-unstyled">
+                        <li class="list-item">
+                             <i class="fas fa-shield-alt"></i>
+                             <div class="item-details">
+                                <strong>Resposta a Incidentes:</strong> Criação de manuais de resposta a incidentes para ações rápidas e estruturadas. Uso de SIEM (Security Information and Event Management) para monitoramento e análise de logs.
+                             </div>
+                        </li>
+                        <li class="list-item">
+                             <i class="fas fa-clipboard-check"></i>
+                             <div class="item-details">
+                                <strong>Auditorias de Segurança e Frameworks:</strong> Aplicação da Estrutura de Gerenciamento de Riscos (RMF) do NIST para avaliação de controles. Implementação da Estrutura de Segurança Cibernética (CSF) do NIST para proteção de ativos. Identificação de ameaças, riscos e vulnerabilidades em operações críticas.
+                             </div>
+                        </li>
+                        <li class="list-item">
+                             <i class="fas fa-network-wired"></i>
+                             <div class="item-details">
+                                <strong>Proteção de Redes e Sistemas:</strong> Definição de arquiteturas de redes seguras e proteção contra invasões. Técnicas de segurança em sistemas Linux usando CLI, Bash e ferramentas de análise. Uso de SQL para análise forense em bancos de dados.
+                             </div>
+                        </li>
+                         </ul>
+                     <p class="mt-3">Minha transição para a segurança cibernética não é apenas uma mudança de carreira, mas uma **evolução natural** da minha paixão por tecnologia e resolução de problemas complexos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr> <section id="projetos" class="section bg-light">
+        <div class="container">
+            <h2>Projetos</h2> <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                         <img src="https://placehold.co/600x400/343a40/ffffff?text=SQL+Injection" class="card-img-top" alt="Imagem ilustrativa de Injeção SQL">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-database"></i> Análise e Mitigação de Injeção SQL</h5>
+                            <p class="card-text">
+                                <strong>Desafio:</strong> Simular como atacantes exploram vulnerabilidades de injeção SQL em aplicações web.
+                                <br>
+                                <strong>Abordagem:</strong> Atuei como **Red Team** em um ambiente controlado, utilizando **SQL** e scripts em **Python**.
+                                <br>
+                                <strong>Resultados:</strong> Demonstrei a técnica de ataque e identifiquei as contramedidas essenciais para proteger bancos de dados.
+                                <br>
+                                <strong>Aprendizados:</strong> Reforcei a importância de validação rigorosa de entradas e práticas de codificação segura para prevenir injeções, atuando na perspectiva do **Blue Team** para fortalecer a defesa.
+                            </p>
+                            <p class="card-text"><small class="text-muted">Habilidades: SQL, Python, Segurança de Banco de Dados, OWASP A01/A03</small></p>
+                            <a href="#" class="btn btn-primary" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                         <img src="https://placehold.co/600x400/343a40/ffffff?text=Broken+Auth" class="card-img-top" alt="Imagem ilustrativa de Autenticação Quebrada">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-user-shield"></i> Teste de Vulnerabilidades de Autenticação Quebrada</h5>
+                            <p class="card-text">
+                                <strong>Desafio:</strong> Simular como atacantes exploram autenticação fraca em sistemas, um cenário comum em CTFs/TryHackMe.
+                                <br>
+                                <strong>Abordagem:</strong> Utilizei ferramentas (como o conceito do Hydra em ambiente controlado) e scripts em **Python** para testar a resistência a ataques de força bruta e enumeração.
+                                <br>
+                                <strong>Resultados:</strong> Identifiquei configurações e práticas que reduzem significativamente o risco de ataques de autenticação bem-sucedidos.
+                                <br>
+                                <strong>Aprendizados:</strong> Compreendi a importância crítica de políticas de senha robustas, mecanismos de bloqueio de contas após tentativas falhas e a implementação de autenticação multi-fator (MFA) para o **Blue Team**.
+                            </p>
+                            <p class="card-text"><small class="text-muted">Habilidades: Python, Autenticação Web, OWASP A07</small></p>
+                            <a href="#" class="btn btn-primary" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                         <img src="https://placehold.co/600x400/343a40/ffffff?text=Network+Security" class="card-img-top" alt="Imagem ilustrativa de Segurança de Rede">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-network-wired"></i> Análise de Segurança de Rede e Configuração de Firewall</h5>
+                            <p class="card-text">
+                                <strong>Desafio:</strong> Proteger uma rede simulada contra tráfego malicioso e acessos não autorizados.
+                                <br>
+                                <strong>Abordagem:</strong> Configurei e analisei regras de firewall em um ambiente (VM ou **Cloud**), utilizando comandos **Linux** e conceitos de rede.
+                                <br>
+                                <strong>Resultados:</strong> Implementei regras eficazes para filtrar tráfego, bloqueando tentativas de intrusão e analisando logs para monitoramento.
+                                <br>
+                                <strong>Aprendizados:</strong> Reforcei a importância da segmentação de rede, do princípio do menor privilégio e da análise contínua de logs como práticas essenciais para o **Blue Team** na defesa de perímetro.
+                            </p>
+                            <p class="card-text"><small class="text-muted">Habilidades: Cloud (AWS/GCP/Azure), Redes, Linux, Firewall</small></p>
+                            <a href="#" class="btn btn-primary" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                         <img src="https://placehold.co/600x400/343a40/ffffff?text=Log+Analysis" class="card-img-top" alt="Imagem ilustrativa de Análise de Logs">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-terminal"></i> Automação de Análise de Logs com Python</h5>
+                             <p class="card-text">
+                                <strong>Desafio:</strong> Processar e analisar grandes volumes de logs de segurança para identificar atividades suspeitas de forma eficiente.
+                                <br>
+                                <strong>Abordagem:</strong> Desenvolvi um script em **Python** para automatizar a leitura, parseamento e análise de logs (simulados ou reais de laboratório), buscando por padrões e anomalias.
+                                <br>
+                                <strong>Resultados:</strong> Criei uma ferramenta que agiliza a detecção de possíveis indicadores de comprometimento (IOCs) em logs.
+                                <br>
+                                <strong>Aprendizados:</strong> Aprofundei minhas habilidades em **Python** para tarefas de segurança e a importância da análise de logs como uma ferramenta fundamental para o **Blue Team** na detecção proativa de ameaças e na **resposta a incidentes**.
+                            </p>
+                            <p class="card-text"><small class="text-muted">Habilidades: Python, Análise de Dados, Logs de Segurança</small></p>
+                            <a href="#" class="btn btn-primary" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                         <img src="https://placehold.co/600x400/343a40/ffffff?text=Incident+Response" class="card-img-top" alt="Imagem ilustrativa de Resposta a Incidentes">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-file-alt"></i> Estudo de Caso de Resposta a Incidentes</h5>
+                             <p class="card-text">
+                                <strong>Desafio:</strong> Simular e documentar o processo de resposta a um incidente de segurança cibernética.
+                                <br>
+                                <strong>Abordagem:</strong> Detalhei um cenário hipotético de incidente, aplicando as fases de resposta (preparação, identificação, contenção, erradicação, recuperação, lições aprendidas) e documentando cada passo em um formato de diário de incidentes.
+                                <br>
+                                <strong>Resultados:</strong> Criei um estudo de caso que demonstra minha compreensão do ciclo de vida da resposta a incidentes e a importância da documentação clara e organizada.
+                                <br>
+                                <strong>Aprendizados:</strong> Reforcei a necessidade de um plano de resposta a incidentes bem definido e a importância da comunicação eficaz e da coordenação entre as equipes (simuladas) durante uma crise de segurança, uma habilidade chave para o **Blue Team**.
+                            </p>
+                            <p class="card-text"><small class="text-muted">Habilidades: Gerenciamento de Incidentes, Documentação</small></p>
+                            <a href="#" class="btn btn-primary" target="_blank">Documentação</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                         <img src="https://placehold.co/600x400/343a40/ffffff?text=Linux+Hardening" class="card-img-top" alt="Imagem ilustrativa de Hardening Linux">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fab fa-linux"></i> Hardening Básico de Sistema Linux</h5>
+                             <p class="card-text">
+                                <strong>Desafio:</strong> Fortalecer a segurança de um sistema **Linux** para reduzir sua superfície de ataque.
+                                <br>
+                                <strong>Abordagem:</strong> Apliquei técnicas de **hardening** em um ambiente de laboratório, incluindo gerenciamento seguro de usuários e permissões, configuração de serviços (como SSH) e remoção de pacotes desnecessários, utilizando comandos **Bash**.
+                                <br>
+                                <strong>Resultados:</strong> Configurei um sistema Linux com uma postura de segurança mais robusta contra ameaças comuns.
+                                <br>
+                                <strong>Aprendizados:</strong> Aprofundei meu conhecimento em segurança de sistemas operacionais **Linux** e a importância do hardening como uma medida preventiva fundamental para o **Blue Team**, mitigando riscos que poderiam ser explorados pelo **Red Team**.
+                            </p>
+                            <p class="card-text"><small class="text-muted">Habilidades: Comandos Linux, Segurança de Sistemas Operacionais, Bash</small></p>
+                            <a href="#" class="btn btn-primary" target="_blank">Ver Documentação/Scripts</a>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+    </section>
+    <hr> <section id="educacao" class="section">
+        <div class="container">
+            <h2>Educação e Certificações</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <ul class="list-unstyled">
+                        <li class="list-item">
+                             <i class="fas fa-graduation-cap"></i>
+                             <div class="item-details">
+                                <strong>Google Cybersecurity Certification</strong>
+                                <br><small class="text-muted">Em andamento.</small>
+                                <br>LGPD - SENAI, Segurança em Cloud, Proteção de Dados, Segurança de Aplicações, Segurança em Redes e Sistemas, Resposta a Incidentes.
+                                <br>Módulos concluídos: Fundamentos de segurança (NIST CSF, RMF), Ferramentas SIEM e análise de logs, Hardening de sistemas Linux, Resposta a incidentes.
+                             </div>
+                        </li>
+                        <li class="list-item">
+                             <i class="fas fa-brain"></i>
+                             <div class="item-details">
+                                <strong>Pós-graduação em IA e Machine Learning</strong>
+                                <br><small class="text-muted">Pitágoras Unopar | Início: 2023</small>
+                                <br>Conhecimento aplicável em segurança para detecção de anomalias e análise de malware.
+                             </div>
+                        </li>
+                        <li class="list-item">
+                             <i class="fas fa-code-branch"></i>
+                             <div class="item-details">
+                                <strong>Graduado em Análise e Desenvolvimento de Sistemas</strong>
+                                <br><small class="text-muted">FACULDADE AIEC | Início: 2020</small>
+                             </div>
+                        </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr> <section id="experiencia" class="section bg-light">
+        <div class="container">
+            <h2>Experiência Profissional</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                     <div class="experience-intro-block">
+                        <p>Durante 5 anos, atuei como **técnico em computadores e smartphones (hardware e software)**, gerenciando meu próprio negócio de TI. Essa jornada solo, focada em manutenção e resolução de problemas, me proporcionou uma base técnica sólida e a capacidade de **transformar desafios em soluções robustas**. Esta experiência me proporcionou:</p>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="list-item">
+                            <i class="fas fa-wrench"></i>
+                            <div class="item-details">
+                                <strong>Resolução de Problemas:</strong> Identificação e solução eficaz de problemas técnicos e de segurança em hardware e software.
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-cogs"></i>
+                            <div class="item-details">
+                                <strong>Gerenciamento de Sistemas:</strong> Administração de sistemas e redes em pequena escala para garantir o funcionamento e a segurança dos equipamentos dos clientes.
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-handshake"></i>
+                            <div class="item-details">
+                                <strong>Interação com Clientes:</strong> Comunicação clara e direta com clientes para entender suas necessidades, explicar problemas técnicos e implementar soluções de forma segura.
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <div class="item-details">
+                                <strong>Gerenciamento de Projetos:</strong> Planejamento e execução de tarefas de manutenção e reparo dentro de prazos definidos.
+                            </div>
+                        </li>
+                    </ul>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <hr> <section id="habilidades-pessoais" class="section">
+        <div class="container">
+            <h2>Habilidades Pessoais</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <ul class="list-unstyled">
+                        <li class="list-item">
+                             <i class="fas fa-tasks"></i>
+                             <div class="item-details">
+                                 <span class="item-name">Habilidades Organizacionais:</span> Proficiente em organizar carga de trabalho e priorizar tarefas para cumprir prazos.
+                             </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-handshake"></i>
+                            <div class="item-details">
+                                <span class="item-name">Comunicação com Clientes:</span> Desenvolvi fortes habilidades de comunicação e relacionamento direto com clientes para entender necessidades e resolver problemas de forma eficaz.
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <div class="item-details">
+                                <span class="item-name">Gerenciamento de Projetos:</span> Capacidade demonstrada de gerenciar múltiplos projetos em ambientes dinâmicos.
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-sync-alt"></i>
+                            <div class="item-details">
+                                <span class="item-name">Adaptabilidade:</span> Rápido para adaptar e aprender novas técnicas em resposta a requisitos de projetos em evolução.
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-comments"></i>
+                             <div class="item-details">
+                                <span class="item-name">Comunicação Eficaz:</span> Habilidades interpessoais e de comunicação excepcionais, facilitando a interação.
+                            </div>
+                        </li>
+                         <li class="list-item">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <div class="item-details">
+                                <span class="item-name">Resolução de Problemas:</span> Forte capacidade de identificar e resolver desafios técnicos complexos.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="interesses-futuros" class="section">
+        <div class="container">
+            <h2>Interesses Futuros</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <ul class="list-unstyled">
+                        <li class="list-item">
+                            <i class="fas fa-certificate"></i>
+                            <div class="item-details">
+                                <span class="item-name">Certificações:</span> CompTIA Security+, Certified Ethical Hacker (CEH).
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-book-open"></i>
+                            <div class="item-details">
+                                <span class="item-name">Áreas de Aprofundamento:</span> Pentesting avançado, Segurança em Cloud (AWS/Azure), Automação de segurança com Python.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section bg-light">
+        <div class="container">
+            <h2>Contato</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 text-center">
+                    <p>Conecte-se comigo:</p>
+                     <div class="social-icons">
+                        <a href="/?locale=en_US" target="_blank" aria-label=""><i class=""></i></a>
+                        <a href="#" target="_blank" aria-label=""><i class=""></i></a>
+                         </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="biblical-message">
+        Até aqui o Senhor nos ajudou - 1 Samuel 7:12 (NVI)
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>© 2025 Igor de Jesus. Todos os direitos reservados.</strong></p>
+             <p><small>.</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Atualiza o ano no rodapé
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
